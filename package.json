@@ -1,0 +1,22 @@
+{
+  "name": "marna-house",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FACG5/Marna-House.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FACG5/Marna-House/issues"
+  },
+  "homepage": "https://github.com/FACG5/Marna-House#readme"
+}
