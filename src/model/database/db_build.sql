@@ -1,13 +1,17 @@
 BEGIN; 
 
 DROP TABLE IF EXISTS users , reservations , rooms CASCADE ;
+DROP TYPE IF EXISTS  reservation_status,room_type;
+
+CREATE TYPE room_type AS ENUM('single','double','triple');
+CREATE TYPE reservation_status AS ENUM('unconfirm','underconfirm','confirmed');
 
 CREATE TABLE users(
     id serial primary key ,
     first_name VARCHAR(20) NOT NULL,
     last_name VARCHAR(20) NOT NULL,
     email_address VARCHAR(50) UNIQUE NOT NULL  ,
-    phone_num INTEGER UNIQUE NOT NULL,
+    phone_num VARCHAR(20) UNIQUE NOT NULL,
     status VARCHAR(10) NOT NULL
 );
 
@@ -18,16 +22,17 @@ CREATE TABLE rooms(
     price integer NOT NULL  ,
     imgs text ,
     services text ,
-    type VARCHAR(20)
+    type room_type
 );
 
 CREATE TABLE reservations(
-    id serial primary key ,
-    from TIMESTAMP NOT NULL,
-    to TIMESTAMP NOT NULL ,
+    id serial primary key,
+    reservation_from TIMESTAMP NOT NULL,
+    reservation_to TIMESTAMP NOT NULL ,
     room_id INTEGER REFERENCES rooms(id) NOT NULL,
     user_id INTEGER REFERENCES users(id) NOT NULL,
-    status VARCHAR(20) NOT NULL,
+    status reservation_status NOT NULL
 );
 
 COMMIT ;
+
