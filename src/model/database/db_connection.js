@@ -25,8 +25,5 @@ const options = {
     max: process.env.MAX_CONNECTIONS || 2,
 };
 
-const object = new Pool(options);
-object.query('select * from users', (err, result) => {
 
-});
 module.exports = new Pool(options);
