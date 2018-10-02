@@ -11,4 +11,14 @@ CREATE TABLE users(
     status VARCHAR(10) NOT NULL
 );
 
+CREATE TABLE rooms(
+    id serial primary key ,
+    room_num INTEGER NOT NULL,
+    description TEXT ,
+    price integer NOT NULL  ,
+    imgs text ,
+    services text ,
+    type VARCHAR(20)
+);
+
 COMMIT ;
