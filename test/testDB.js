@@ -1,6 +1,6 @@
 const tape = require('tape');
 const { addUser, blockUser } = require('../src/model/queries/users');
-const { addRoom } = require('./../src/model/queries/rooms');
+const { addRoom, deleteRoom } = require('./../src/model/queries/rooms');
 const db_build = require('./../src/model/database/db_build');
 
 //  testing build database
@@ -84,7 +84,7 @@ tape('Testing  Block exitent user', (t) => {
 
 // Test insert new room to database ;
 tape('Testing Insert a new room to database', (t) => {
-    const userObject = {
+    const roomObject = {
         room_num: 1,
         description: 'first decsription',
         price: 100,
@@ -98,19 +98,57 @@ tape('Testing Insert a new room to database', (t) => {
             t.error(err);
             t.end();
         } else {
-            addRoom(userObject, (err, result) => {
+            addRoom(roomObject, (err, result) => {
                 if (err) {
                     t.error(err);
                     t.end();
                 } else {
-                    userObject.id = 1;
-                    t.deepEqual(userObject, result.rows[0], 'the result from insert should equal the inserted object extra id fields ');
+                    roomObject.id = 1;
+                    t.deepEqual(roomObject, result.rows[0], 'the result from insert should equal the inserted object extra id fields ');
                     t.end();
                 }
             });
         }
     });
 });
+
+// Test insert new room to database ;
+tape('Testing Insert a new room to database', (t) => {
+    const roomObject = {
+        room_num: 1,
+        description: 'first decsription',
+        price: 100,
+        imgs: 'img url',
+        services: 'first serveices',
+        type: 'single',
+
+    };
+    db_build((err, result) => {
+        if (err) {
+            t.error(err);
+            t.end();
+        } else {
+            addRoom(roomObject, (err, result) => {
+                if (err) {
+                    t.error(err);
+                    t.end();
+                } else {
+                    const id = 1;
+                    deleteRoom(id, (err, result) => {
+                        if (err) {
+                            t.error();
+                        } else {
+                            roomObject.id = 1;
+                            t.deepEqual(roomObject, result.rows[0], 'the result from insert should equal the inserted object extra id fields ');
+                            t.end();
+                        }
+                    });
+                }
+            });
+        }
+    });
+});
+
 
 tape.onFinish = () => {
     process.exit();
