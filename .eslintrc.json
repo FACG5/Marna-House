@@ -1,7 +1,3 @@
 {
-    "extends": "airbnb-base",
-    "indent": [
-        "error",
-        "tab"
-    ]
+    "extends": "airbnb-base"
 }
