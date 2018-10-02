@@ -5,6 +5,7 @@ DROP TYPE IF EXISTS  reservation_status,room_type;
 
 CREATE TYPE room_type AS ENUM('single','double','triple');
 CREATE TYPE reservation_status AS ENUM('unconfirm','underconfirm','confirmed');
+CREATE TYPE user_status AS ENUM('new','block','confirmed');
 
 CREATE TABLE users(
     id serial primary key ,
@@ -12,7 +13,7 @@ CREATE TABLE users(
     last_name VARCHAR(20) NOT NULL,
     email_address VARCHAR(50) UNIQUE NOT NULL  ,
     phone_num VARCHAR(20) UNIQUE NOT NULL,
-    status VARCHAR(10) NOT NULL
+    status user_status NOT NULL
 );
 
 CREATE TABLE rooms(
