@@ -1,6 +1,6 @@
 BEGIN; 
 
-DROP TABLE IF EXISTS users , reservations , rooms CASCADE ;
+DROP TABLE IF EXISTS users , reservations , rooms ,admin CASCADE ;
 DROP TYPE IF EXISTS  reservation_status,room_type,user_status;
 
 CREATE TYPE room_type AS ENUM('single','double','triple');
@@ -34,6 +34,12 @@ CREATE TABLE reservations(
     user_id INTEGER REFERENCES users(id) NOT NULL,
     status reservation_status NOT NULL
 );
+CREATE TABLE admin(
+    id serial primary key,
+    username VARCHAR(20) NOT NULL ,
+    password VARCHAR(100) NOT NULL
+);
+INSERT INTO admin (username,password) VALUES ('ahmed','$2b$10$brlqvEWThoj9laHRZbkGUeZd7RDNKVmdEckKiPbVsoWYJDQIqrfpu'); 
 
 COMMIT ;
 
