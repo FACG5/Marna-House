@@ -20,4 +20,19 @@ const addUser = (object, callback) => {
 };
 
 
-module.exports = { addUser };
+const blockUser = (id, callback) => {
+
+    const sql = {
+        text: "UPDATE users SET status = 'block' WHERE id=$1 returning *;",
+        values: [id],
+    };
+    db_connection.query(sql, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            callback(null, result);
+        }
+    });
+};
+
+module.exports = { addUser, blockUser };

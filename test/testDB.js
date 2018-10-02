@@ -1,5 +1,5 @@
 const tape = require('tape');
-const { addUser} = require('../src/model/queries/users');
+const { addUser, blockUser } = require('../src/model/queries/users');
 const db_build = require('./../src/model/database/db_build');
 
 //  testing build database
@@ -44,6 +44,41 @@ tape('Testing Insert a new user to database', (t) => {
     })
 });
 
+// Test Block exitent user ; 
+tape('Testing  Block exitent user', (t) => {
+    const userObject = {
+        first_name: 'ahmed',
+        last_name: 'Rami',
+        email_address: 'ahmed@ahmed.com',
+        phone_num: '0592528578'
+    }
+    db_build((err, result) => {
+        if (err) {
+            t.error(err);
+            t.end();
+        } else {
+            addUser(userObject, (err, result) => {
+                if (err) {
+                    t.error(err);
+                    t.end();
+                } else {
+                    userObject.status = 'new';
+                    userObject.id = 1;
+                    t.deepEqual(userObject, result.rows[0], 'the result from insert should equal the inserted object extra status,id fields ');
+                    blockUser(1, (err, result) => {
+                        if (err) {
+                            t.error(err);
+                        } else {
+                            userObject.status = 'block';
+                            t.deepEqual(userObject, result.rows[0], 'the result from block should equal have status field with block value ');
+                            t.end();
+                        }
+                    });
+                }
+            });
+        }
+    })
+});
 
 tape.onFinish = () => {
     process.exit();
