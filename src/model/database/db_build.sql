@@ -1,7 +1,7 @@
 BEGIN; 
 
 DROP TABLE IF EXISTS users , reservations , rooms CASCADE ;
-DROP TYPE IF EXISTS  reservation_status,room_type;
+DROP TYPE IF EXISTS  reservation_status,room_type,user_status;
 
 CREATE TYPE room_type AS ENUM('single','double','triple');
 CREATE TYPE reservation_status AS ENUM('unconfirm','underconfirm','confirmed');
