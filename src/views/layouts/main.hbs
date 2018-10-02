@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+  {{>head}}
+  </head>
+  <body>
+    {{>header}}
+    <main>
+      {{{body}}}
+    </main>
+    {{>footer}}
+  </body>
+    {{#if script}}
+    <script src="/js/{{script}}.js"></script>
+    {{/if}}
+</html>
