@@ -21,4 +21,13 @@ CREATE TABLE rooms(
     type VARCHAR(20)
 );
 
+CREATE TABLE reservations(
+    id serial primary key ,
+    from TIMESTAMP NOT NULL,
+    to TIMESTAMP NOT NULL ,
+    room_id INTEGER REFERENCES rooms(id) NOT NULL,
+    user_id INTEGER REFERENCES users(id) NOT NULL,
+    status VARCHAR(20) NOT NULL,
+);
+
 COMMIT ;
