@@ -21,12 +21,8 @@ const options = {
     user: username,
     password,
     database: params.pathname.split('/')[1],
-    ssl: process.env.hostname !== 'localhost',
+    ssl: params.hostname !== 'localhost',
     max: process.env.MAX_CONNECTIONS || 2,
 };
 
-const object = new Pool(options);
-object.query('select * from users', (err, result) => {
-
-});
 module.exports = new Pool(options);

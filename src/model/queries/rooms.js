@@ -33,5 +33,18 @@ const deleteRoom = (id, callback) => {
         }
     });
 };
+const getRoom = (id, callback) => {
+    const sql = {
+        text: 'select * from rooms where id=$1',
+        values: [id],
+    }
+    db_connection.query(sql, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            callback(null, result);
+        }
+    });
+}
 
-module.exports = { addRoom, deleteRoom };
+module.exports = { addRoom, deleteRoom, getRoom };
