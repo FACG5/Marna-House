@@ -158,12 +158,12 @@ tape('Testing Insert a new room to database', (t) => {
     type: 'single',
 
   };
-  db_build((err, result) => {
+  db_build((err) => {
     if (err) {
       t.error(err);
       t.end();
     } else {
-      addRoom(roomObject, (err, result) => {
+      addRoom(roomObject, (err) => {
         if (err) {
           t.error(err);
           t.end();
@@ -209,13 +209,12 @@ tape('Testing update exists room in database', (t) => {
           const object = Object.assign({}, result.rows[0]);
           object.description = 'update';
 
-          updateRoom(object, (err, result) => {
+          updateRoom(object, (err, rowCount) => {
             if (err) {
               t.error(err);
             } else {
               roomObject.id = 1;
-              t.equal('UPDATE', result.command, 'The Command of Query Should Be UPDATE');
-              t.equal(1, result.rowCount, 'The Number of Effected Rows Should Be 1 ');
+              t.equal(1, rowCount, 'The Number of Effected Rows Should Be 1 ');
               t.end();
             }
           });

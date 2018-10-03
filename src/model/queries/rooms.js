@@ -58,7 +58,7 @@ const updateRoom = (object, callback) => {
     if (err) {
       callback(err);
     } else {
-      callback(null, result);
+      callback(null, result.rowCount);
     }
   });
 };
