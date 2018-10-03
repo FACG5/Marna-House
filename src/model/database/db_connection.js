@@ -21,7 +21,7 @@ const options = {
     user: username,
     password,
     database: params.pathname.split('/')[1],
-    ssl: process.env.hostname !== 'localhost',
+    ssl: params.hostname !== 'localhost',
     max: process.env.MAX_CONNECTIONS || 2,
 };
 

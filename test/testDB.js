@@ -5,14 +5,12 @@ const db_build = require('./../src/model/database/db_build');
 
 
 //  testing build database
-tape('Testing Insert a new user to database', (t) => {
+tape('Testing build database ', (t) => {
     db_build((err, result) => {
         if (err) {
             t.error(err);
             t.end();
         } else {
-            // t.equal(result.length, 10, 'the length of arrary should equal 10');
-            // t.equal(result[result.length - 1].command, 'COMMIT', 'the last command should be commit ');
             t.end();
         }
     });
@@ -176,6 +174,7 @@ tape('Testing Insert a new room to database', (t) => {
                             t.error();
                         } else {
                             roomObject.id = 1;
+                            console.log(result.rows[0]);
                             t.equal(1, result.rows.length, 'the length of array should equal 1');
                             t.deepEqual(roomObject, result.rows[0], 'the result from database should be row with data for room with id equal 1');
                             t.end();
