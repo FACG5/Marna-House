@@ -1,0 +1,73 @@
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.card {
+  margin: 7px;
+  border-radius: 10px;
+  border: 2px solid #DCDCDC;
+  position: relative;
+}
+
+
+
+.card:hover .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index:100;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+ .overlay .hidden {
+   display: none;
+ }
+
+ .card:hover .hidden {
+   display: flex;
+   margin: 10px;
+   width: 150px;
+   height: 30px;
+   color: #FFFFFF;
+   border: 0;
+   text-align: center;
+   justify-content: center;
+
+ }
+
+.image {
+  border-radius: 10px 10px 0 0;
+  border: 1px solid #DCDCDC;
+  width: 300px;
+}
+
+.card:hover #book-btn {
+  background-color: #00C2FF;
+}
+
+.card:hover #view-btn {
+background-color: #787878;
+}
+.info {
+  display: flex;
+  justify-content: space-between;
+}
+.search-view h2 {
+  padding: 20px;
+  padding-left: 35px;
+  font-family: 'Lato', sans-serif;
+  font-size: 30px;
+}
