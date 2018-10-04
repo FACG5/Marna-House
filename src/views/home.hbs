@@ -15,6 +15,7 @@
           <div class="info">
             <span>Price : {{price}}$</span>
             <span>Room No. : {{room_num}}</span>
+            <input type="checkbox" class="check-box" id="{{room_num}}">
           </div>
         </div>
       {{/each}}
@@ -37,6 +38,7 @@
           <div class="info">
             <span>Price : {{price}}$</span>
             <span>Room No. : {{room_num}}</span>
+            <input type="checkbox" class="check-box" id="{{room_num}}">
           </div>
         </div>
       {{/each}}
@@ -59,10 +61,15 @@
           <div class="info">
             <span>Price : {{price}}$</span>
             <span>Room No. : {{room_num}}</span>
+            <input type="checkbox" class="check-box" id="{{room_num}}">
           </div>
         </div>
       {{/each}}
     </div>
   </div>
   {{/if}}
+  <div class="confirm-btns">
+    <button id="confirm-book" type="button" name="button">Confirm</button>
+    <button id="cancel-book" type="button" name="button">Cancel</button>
+  </div>
 </section>

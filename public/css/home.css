@@ -3,6 +3,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  margin-bottom: 20px;
+
+
 }
 
 .card {
@@ -10,9 +13,8 @@
   border-radius: 10px;
   border: 2px solid #DCDCDC;
   position: relative;
+  margin-left: 30px;
 }
-
-
 
 .card:hover .overlay {
     position: absolute;
@@ -23,7 +25,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.5);
-    z-index:100;
+    z-index: 1;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -65,9 +67,52 @@ background-color: #787878;
   display: flex;
   justify-content: space-between;
 }
+.check-box {
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+  margin-top: -3px;
+
+}
 .search-view h2 {
   padding: 20px;
   padding-left: 35px;
   font-family: 'Lato', sans-serif;
   font-size: 30px;
+  background-color: #DCDCDC;
+}
+
+.confirm-btns {
+  display: flex;
+  text-align: center;
+  margin: 30px;
+  justify-content: center;
+ }
+
+#confirm-book {
+  background-color: #00C2FF;
+  width: 420px;
+  height: 70px;
+  border: 0;
+  color: #FFFFFF;
+  font-family: 'Lato', sans-serif;
+  font-size: 30px;
+}
+
+#cancel-book {
+  background-color: #FF5454;
+  width: 420px;
+  height: 70px;
+  border: 0;
+  color: #FFFFFF;
+  font-family: 'Lato', sans-serif;
+  font-size: 30px;
+}
+
+#confirm-book:hover {
+  background-color: #194856;
+}
+
+#cancel-book:hover {
+  background-color: #b53636;
 }
