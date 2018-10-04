@@ -89,8 +89,8 @@ tape('Testing Insert a new room to database', (t) => {
     .catch(err => t.error(err));
 });
 
-// Test insert new room to database ;
-tape('Testing Insert a new room to database', (t) => {
+// Testing get room from database ;
+tape('Testing get room from database', (t) => {
   const roomObject = {
     room_num: 1,
     description: 'first decsription',
@@ -117,8 +117,8 @@ tape('Testing Insert a new room to database', (t) => {
 });
 
 
-// Test insert new room to database ;
-tape('Testing Insert a new room to database', (t) => {
+// Testing delete  room from database
+tape('Testing delete  room from database', (t) => {
   const roomObject = {
     room_num: 1,
     description: 'first decsription',
@@ -146,7 +146,7 @@ tape('Testing Insert a new room to database', (t) => {
     .catch(err => t.error(err));
 });
 
-// Test update exists room in database ;
+// Testing update exists room in database ;
 tape('Testing update exists room in database', (t) => {
   const roomObject = {
     room_num: 1,
@@ -177,8 +177,8 @@ tape('Testing update exists room in database', (t) => {
 });
 
 
-// Test update exists room in database ;
-tape('Testing update exists room in database', (t) => {
+// Testing get Available Rooms ;
+tape('Testing get Available Rooms ', (t) => {
   dbBuild()
     .then((result) => {
       t.notEqual(result, undefined, 'The Result from add fack data should be not equal undefiend');
@@ -195,8 +195,8 @@ tape('Testing update exists room in database', (t) => {
     .catch(err => t.error(err));
 });
 
-// Test update exists room in database ;
-tape('Testing update exists room in database', (t) => {
+// Testing get Available Rooms;
+tape('Testing get Available Rooms', (t) => {
   dbBuild()
     .then((result) => {
       t.notEqual(result, undefined, 'The Result from add fack data should be not equal undefiend');
@@ -222,8 +222,8 @@ tape('Testing update exists room in database', (t) => {
     .catch(err => t.error(err));
 });
 
-// Test update exists room in database ;
-tape('Testing update exists room in database', (t) => {
+// Testing get Available Rooms ;
+tape('Testing get Available Rooms', (t) => {
   dbBuild()
     .then((result) => {
       t.notEqual(result, undefined, 'The Result from add fack data should be not equal undefiend');
@@ -248,8 +248,8 @@ tape('Testing update exists room in database', (t) => {
     .catch(err => t.error(err));
 });
 
-// Test update exists room in database ;
-tape('Testing update exists room in database', (t) => {
+// Testing get Available Room ;
+tape('Testing get Available Rooms', (t) => {
   dbBuild()
     .then((result) => {
       t.notEqual(result, undefined, 'The Result from add fack data should be not equal undefiend');
