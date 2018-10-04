@@ -34,12 +34,18 @@ CREATE TABLE reservations(
     user_id INTEGER REFERENCES users(id) NOT NULL,
     status reservation_status NOT NULL
 );
+
+
+
+
 CREATE TABLE admin(
     id serial primary key,
     username VARCHAR(20) NOT NULL ,
     password VARCHAR(100) NOT NULL
 );
-INSERT INTO admin (username,password) VALUES ('ahmed','$2b$10$brlqvEWThoj9laHRZbkGUeZd7RDNKVmdEckKiPbVsoWYJDQIqrfpu'); 
+INSERT INTO admin (username,password) VALUES
+  ('ahmed','$2b$10$brlqvEWThoj9laHRZbkGUeZd7RDNKVmdEckKiPbVsoWYJDQIqrfpu'); 
+
+
 
 COMMIT ;
-

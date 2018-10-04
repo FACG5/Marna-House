@@ -1,38 +1,44 @@
-const db_connection = require('../database/db_connection');
+const dbConnection = require('../database/db_connection');
 
-const addUser = (object, callback) => {
+const addUser = (object) => {
 
-    const {
-        first_name, last_name, email_address, phone_num,
-    } = object;
-    const sql = {
-        text: 'INSERT INTO users (first_name , last_name , email_address , phone_num ,status) VALUES ($1,$2,$3,$4,$5) returning *',
-        values: [first_name, last_name, email_address, phone_num, 'new'],
-    };
-
-    db_connection.query(sql, (err, result) => {
-        if (err) {
-            callback(err);
-        } else {
-            callback(null, result);
-        }
+  const {
+    first_name: firstName,
+    last_name: lastName,
+    email_address: emailAddress,
+    phone_num: phoneNum,
+  } = object;
+  const sql = {
+    text: 'INSERT INTO users (first_name , last_name , email_address , phone_num ,status) VALUES ($1,$2,$3,$4,$5) returning *',
+    values: [firstName, lastName, emailAddress, phoneNum, 'new'],
+  };
+  return new Promise((resolve, reject) => {
+    dbConnection.query(sql, (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
     });
+  });
+
 };
 
 
-const blockUser = (id, callback) => {
-
+const blockUser = (id) => {
+  return new Promise((resolve, reject) => {
     const sql = {
-        text: "UPDATE users SET status = 'block' WHERE id=$1 returning *;",
-        values: [id],
+      text: "UPDATE users SET status = 'block' WHERE id=$1 returning *;",
+      values: [id],
     };
-    db_connection.query(sql, (err, result) => {
-        if (err) {
-            callback(err);
-        } else {
-            callback(null, result);
-        }
+    dbConnection.query(sql, (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
     });
+  });
 };
 
 module.exports = { addUser, blockUser };
