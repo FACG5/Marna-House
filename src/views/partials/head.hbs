@@ -4,11 +4,8 @@
 <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Volkhov" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-{{#if style}}
-    <link rel="stylesheet" href="css/{{style}}.css">
-{{/if}}
-{{#if style_special}}
-    <link rel="stylesheet" href="css/{{style_special}}.css">
-{{/if}}
+<link href="https://fonts.googleapis.com/css?family=Catamaran|Lato|Open+Sans|Roboto" rel="stylesheet">  
+{{#each style}}
+  <link rel="stylesheet" href="css/{{this}}.css">
+  {{/each}}
 <title>{{title}}</title>
