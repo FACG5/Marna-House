@@ -1,4 +1,5 @@
 const dbConnection = require('./../database/db_connection');
+const utilities = require('./utilities');
 
 const addRoom = (object) => {
   const {
@@ -24,7 +25,6 @@ const addRoom = (object) => {
     });
   });
 };
-
 
 const deleteRoom = (id) => {
   const sql = {
@@ -78,39 +78,9 @@ const updateRoom = (object) => {
   });
 };
 
-const removeDuplicated = (allRooms) => {
-  const filterdRooms = [];
-  for (let i = 0; i < allRooms.length; i += 1) {
-    filterdRooms[i] = {
-      number: allRooms[i].room_num,
-      price: allRooms[i].price,
-    };
-    let j = 1;
-    while ((allRooms[i + j] !== undefined) && (allRooms[i].id === allRooms[i + j].id)) {
-      allRooms.splice((i + j), 1);
-    }
-    j = 1;
-  }
-  return (filterdRooms);
-};
-
-const filterResult = (from, to, allResult) => {
-  const array = allResult.slice(0);
-  for (let i = 0; i < array.length; i += 1) {
-    if ((from < array[i].reservation_from && array[i].reservation_from < to)) {
-      array.splice(i, 1);
-      i -= 1;
-    } else if ((from < array[i].reservation_to && array[i].reservation_to < to)) {
-      array.splice(i, 1);
-      i -= 1;
-    }
-  }
-  return removeDuplicated(array);
-};
-
 const avaliableRooms = (object) => {
   const sql = {
-    text: "select rooms.id , rooms.room_num , rooms.price ,  reservations.reservation_from , reservation_to ,reservations.status   from rooms left join reservations ON reservations.room_id = rooms.id where rooms.type = $1 and( reservations.status = 'confirmed') or (reservations.status is null)  order by rooms.id",
+    text: "select rooms.id , rooms.room_num , rooms.price ,  reservations.reservation_from , reservations.reservation_to ,reservations.status   from rooms left join reservations ON reservations.room_id = rooms.id where rooms.type = $1 and( reservations.status = 'confirmed') or (reservations.status is null)  order by rooms.id",
     values: [object.type],
   };
   return new Promise((resolve, reject) => {
@@ -120,7 +90,8 @@ const avaliableRooms = (object) => {
       } else {
         const from = new Date(object.from);
         const to = new Date(object.to);
-        const finalResult = filterResult(from, to, result.rows);
+        const filteredResult = utilities.filterResult(from, to, result.rows);
+        const finalResult = utilities.removeDuplicated(filteredResult);
         resolve(finalResult);
       }
     });

@@ -5,6 +5,7 @@ const {
 } = require('./../src/model/queries/rooms');
 const dbBuild = require('./../src/model/database/db_build');
 const dbFackData = require('./../src/model/database/db_fackData');
+const utilities = require('./../src/model/queries/utilities');
 
 //  testing build database
 tape('Testing build database ', (t) => {
@@ -189,7 +190,7 @@ tape('Testing get Available Rooms ', (t) => {
       return avaliableRooms({ from: '2015-05-01', to: '2019-06-02', type: 'single' });
     })
     .then((result) => {
-      t.deepEqual([{ number: 8, price: 100 }, { number: 9, price: 100 }], result, 'the result should be 2 Rooms');
+      t.deepEqual([{ room_num: 8, price: 100 }, { room_num: 9, price: 100 }], result, 'the result should be 2 Rooms');
       t.end();
     })
     .catch(err => t.error(err));
@@ -208,15 +209,15 @@ tape('Testing get Available Rooms', (t) => {
     })
     .then((result) => {
       t.deepEqual([
-        { number: 2, price: 100 },
-        { number: 3, price: 100 },
-        { number: 4, price: 100 },
-        { number: 5, price: 100 },
-        { number: 6, price: 100 },
-        { number: 7, price: 100 },
-        { number: 8, price: 100 },
-        { number: 9, price: 100 }],
-      result, 'the result should be 8 (from room 2 to room 9) Rooms');
+        { room_num: 2, price: 100 },
+        { room_num: 3, price: 100 },
+        { room_num: 4, price: 100 },
+        { room_num: 5, price: 100 },
+        { room_num: 6, price: 100 },
+        { room_num: 7, price: 100 },
+        { room_num: 8, price: 100 },
+        { room_num: 9, price: 100 }],
+        result, 'the result should be 8 (from room 2 to room 9) Rooms');
       t.end();
     })
     .catch(err => t.error(err));
@@ -235,14 +236,14 @@ tape('Testing get Available Rooms', (t) => {
     })
     .then((result) => {
       t.deepEqual([
-        { number: 3, price: 100 },
-        { number: 4, price: 100 },
-        { number: 5, price: 100 },
-        { number: 6, price: 100 },
-        { number: 7, price: 100 },
-        { number: 8, price: 100 },
-        { number: 9, price: 100 }],
-      result, 'the result should be 7 (from room 3 to room 9) Rooms');
+        { room_num: 3, price: 100 },
+        { room_num: 4, price: 100 },
+        { room_num: 5, price: 100 },
+        { room_num: 6, price: 100 },
+        { room_num: 7, price: 100 },
+        { room_num: 8, price: 100 },
+        { room_num: 9, price: 100 }],
+        result, 'the result should be 7 (from room 3 to room 9) Rooms');
       t.end();
     })
     .catch(err => t.error(err));
@@ -261,20 +262,101 @@ tape('Testing get Available Rooms', (t) => {
     })
     .then((result) => {
       t.deepEqual([
-        { number: 1, price: 100 },
-        { number: 2, price: 100 },
-        { number: 3, price: 100 },
-        { number: 4, price: 100 },
-        { number: 5, price: 100 },
-        { number: 6, price: 100 },
-        { number: 7, price: 100 },
-        { number: 8, price: 100 },
-        { number: 9, price: 100 }],
-      result, 'the result should be all Rooms ');
+        { room_num: 1, price: 100 },
+        { room_num: 2, price: 100 },
+        { room_num: 3, price: 100 },
+        { room_num: 4, price: 100 },
+        { room_num: 5, price: 100 },
+        { room_num: 6, price: 100 },
+        { room_num: 7, price: 100 },
+        { room_num: 8, price: 100 },
+        { room_num: 9, price: 100 }],
+        result, 'the result should be all Rooms ');
       t.end();
     })
     .catch(err => t.error(err));
 });
+// testing utilties functions to serve queries;
+tape('Try to remove duplicated rows from array ', (t) => {
+  const array = [{
+    id: 1,
+    room_num: 1,
+    price: 100,
+  },
+  {
+    id: 1,
+    room_num: 1,
+    price: 100,
+  },
+  {
+    id: 2,
+    room_num: 2,
+    price: 100,
+  },
+  {
+    id: 2,
+    room_num: 2,
+    price: 100,
+  },
+  {
+    id: 2,
+    room_num: 2,
+    price: 100,
+  },
+  ];
+  const result = utilities.removeDuplicated(array);
+  t.deepEqual([{ room_num: 1, price: 100 }, { room_num: 2, price: 100 }], result, 'the result should be array without any duplicated elements ');
+  t.end();
+});
+// testing utilties functions to serve queries;
+tape('Testing remove duplicated rows from array ', (t) => {
+  const array = [{
+    id: 1,
+    room_num: 1,
+    price: 100,
+  },
+  {
+    id: 2,
+    room_num: 2,
+    price: 100,
+  },
+
+  ];
+  const result = utilities.removeDuplicated(array);
+  t.deepEqual([{ room_num: 1, price: 100 }, { room_num: 2, price: 100 }], result, 'the result should be array without any duplicated elements ');
+  t.end();
+});
+
+// testing the reserved room in specify time ;
+tape('testing the reserved room in specify time', (t) => {
+
+  const data = [
+    {
+      reservation_from: '2014-04-01',
+      reservation_to: '2014-04-05',
+    },
+    {
+      reservation_from: '2015-05-05',
+      reservation_to: '2015-06-04',
+    },
+    {
+      reservation_from: '2015-06-05',
+      reservation_to: '2015-06-29',
+    },
+  ];
+  let finalData = utilities.filterResult('2014-05-05', '2014-05-08', data);
+  t.deepEqual(data, finalData, 'that should be there is no any changes because there is not reservations between the order date');
+  finalData = utilities.filterResult('2013-05-05', '2018-05-08', data);
+  t.deepEqual([], finalData, 'that should be there is no room empty');
+  finalData = utilities.filterResult('2014-04-01', '2015-05-08', data);
+  t.deepEqual([{
+    reservation_from: '2015-06-05',
+    reservation_to: '2015-06-29',
+  }], finalData, 'that should be there is no room empty');
+  t.end();
+});
+
+
 tape.onFinish = () => {
   process.exit();
 };
