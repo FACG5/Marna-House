@@ -1,4 +1,110 @@
-*{
-  padding: 0;
-  margin: 0;
+
+.main--section {
+  box-sizing: border-box;
+  padding: 15rem 6rem;
+  width: 100%;
+}
+.main--section__header{
+  display: inline-block;
+  font-size: 4rem;
+  text-transform: uppercase;
+  color:#333;
+  transition: all 1s;
+  cursor: default;
+}
+
+.main--section__header:hover{
+  transform: skewY(4deg);
+
+}
+
+.main--section__result {
+  margin: 1rem auto ;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.main--section__result__item {
+  margin: 3rem 4rem;
+  width: 25rem;
+}
+.main--section__result__item--img{
+  height: 25rem;
+  width: 25rem;
+  position: relative;
+  perspective: 150rem;
+  backface-visibility: hidden;
+}
+
+.main--section__result__item--img img{
+  width: 25rem;
+  height: 25rem;  
+  border-radius: 3px;
+  box-shadow: 0 0 1rem  rgba(0,0,0,.6);
+}
+
+.main--section__result__item--details{
+  margin-top: 2rem;
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+  color: #333;
+}
+
+.main--section__result__item--img--back{
+  height: 25rem;
+  width: 25rem;
+  background:#eee ;
+  transform: rotateY(180deg);
+  transition: all 1s;
+  position: absolute;
+  top: 0;
+  right: 0;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.main--section__result__item--img--front{
+  transition: all 1s;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.main--section__result__item:hover .main--section__result__item--img--front{
+  transform: rotateY(-180deg);
+
+}
+.main--section__result__item:hover .main--section__result__item--img--back{
+  transform: rotateY(0);
+}
+
+.main--section__result__item--img--back input {
+  padding: 1rem 5rem;
+  display: block;
+  margin: 1rem;
+  outline: none;
+  border: none;
+  border-radius: .3rem;
+  font-size: 2rem;
+  font-family: lato;
+  font-weight: 500;
+  color: white;
+  background: #5D83E8;
+  cursor: pointer;
+  transition: all .5s;
+}
+.main--section__result__item--img--back input:first-child{
+  background: #0BD681;
+}
+
+.main--section__result__item--img--back input:first-child:hover{
+  background: rgb(11, 133, 82);
+}
+
+.main--section__result__item--img--back input:hover {
+  background: rgb(47, 69, 129);
+
 }

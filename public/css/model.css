@@ -1,0 +1,213 @@
+.details--model{
+  display: none;
+  position: fixed;
+  left:0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, .6);
+  transition: all;
+  animation-name: model-animate;
+  animation-timing-function: ease-in;
+  animation-duration: 0.3s;
+  backface-visibility: hidden;
+}
+.details--model__content {
+
+  display: none;
+  height: 75vh;
+  width: 38%;
+  padding: 2rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 5px;
+
+  transform: translate(-50%,-50%);
+  background: #eee;
+  animation-name: detials-animate ;
+  animation-timing-function: ease-in;
+  animation-duration: 0.3s;
+  backface-visibility: hidden;
+ 
+
+}
+.details--model__close {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #333;
+  float: right;
+  cursor: pointer;
+  transition: all .5s;
+}
+
+.details--model__close:hover {
+  color: rgb(255, 56, 49);
+}
+.details--model__img {
+  width: fit-content;
+  margin: 5rem auto;
+}
+.details--model__img img{ 
+  width: 300px;
+  margin-left: 1rem;
+  border-radius: 3px;
+}
+.details--model__details {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  font-size: 1.4rem;
+}
+.room-detials--para{
+  margin-top: 1.5rem;
+  width: 80%;
+  line-height: 1.5rem;
+}
+.room-services--para{
+  margin-top: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.room-detials--header,.room-services--header {
+  font-size: 2.4rem;
+}
+.details--model--btns {
+margin-top: 5rem;
+display: flex;
+justify-content: center;
+}
+.details--model--btns input {
+  padding: 1rem 4rem;
+  font-size: 2rem;
+  color: #eee;
+  border: 0;
+  margin: 0 2rem;
+  transition:all .4s;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.details--model--btns--blue{
+  background: rgb(0, 129, 216);
+}
+.details--model--btns--blue:hover{
+  background: rgb(26, 109, 165);
+}
+.details--model--btns--red{
+  background: rgb(253, 52, 52);
+}
+
+.details--model--btns--red:hover{
+  background: rgb(173, 21, 21);
+}
+
+.submit--model__content{
+  display: none;
+  height: 75vh;
+  width: 38%;
+  padding: 2rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 5px;
+
+  transform: translate(-50%,-50%);
+  background: #eee;
+  animation-name: detials-animate ;
+  animation-timing-function: ease-in;
+  animation-duration: 0.3s;
+  backface-visibility: hidden;
+}
+.submit--model__content--header{
+  margin: 2rem auto;
+  text-align: center;
+  border-bottom: 1.2px solid rgb(83, 83, 83);
+  padding-bottom: 2rem;
+  width: 50%;
+}
+.submit--model__content--header--first { 
+  font-size: 5rem;
+  font-family: lato;
+  color: rgb(70, 70, 70);
+  font-weight: 100;
+}
+.submit--model__content--header--second { 
+  font-size: 2rem;
+  font-family: lato;
+  color: rgb(70, 70, 70);
+  font-weight: 100;
+  margin-left: 8rem;
+}
+.submit--model__content--label--name {
+  display: block;
+  font-size: 2rem;
+  color: rgb(68, 68, 68);
+  margin: 1rem 5rem;
+}
+.submit--model__content--input--name {
+  display: block;
+  width: 35rem;
+  border: .5px solid rgba(144, 144, 144,.5);
+  margin: 1rem 0;
+  border-radius: 3px;
+  padding: 1rem;
+  font-size:1.5rem;
+  height: 1.5rem;
+  outline: none;
+}
+.confirmation--model__content{
+  display: none;
+  height: 75vh;
+  width: 38%;
+  padding: 2rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 5px;
+
+  transform: translate(-50%,-50%);
+  background: #eee;
+  animation-name: detials-animate ;
+  animation-timing-function: ease-in;
+  animation-duration: 0.3s;
+  backface-visibility: hidden;
+}
+.confirmation--model__content--message{
+  width: 80%;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.confirmation--model__content--message-content {
+  font-size:2.5rem;
+  font-weight: 300;
+  text-transform: capitalize;
+  text-align: center;
+  line-height: 3.5rem;
+  color: rgb(80, 80, 80);
+}
+
+@keyframes model-animate {
+  0% {
+    transform: translateY(5rem);
+    opacity: 0;
+  }
+  100% { 
+    transform: translateY(0);
+    opacity: 1;
+    
+  }
+}
+@keyframes detials-animate {
+  0% {
+    transform: translate(-50%,-55%);
+    opacity: 0;
+  }
+  100% { 
+    transform: translate(-50%,-50%);
+    opacity: 1;
+    
+  }
+}
