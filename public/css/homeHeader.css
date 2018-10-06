@@ -115,7 +115,7 @@
   border: none;
   color:white;
   font-size: 2rem;
-  margin-top: 5rem;
+  margin-top: 2rem;
   border-radius: 2px;
   padding: 1rem 6rem;
   transition: all .5s;
@@ -142,4 +142,11 @@
   font-weight: 500;
   color: rgb(240, 240, 240);
   margin-top: 5rem;
+}
+.middle--section__form__main--alert {
+    margin: 0px 113px;
+    color: red;
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
 }

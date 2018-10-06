@@ -174,7 +174,6 @@ tape('Testing Insert a new room to database', (t) => {
               t.error();
             } else {
               roomObject.id = 1;
-              console.log(result.rows[0]);
               t.equal(1, result.rows.length, 'the length of array should equal 1');
               t.deepEqual(roomObject, result.rows[0], 'the result from database should be row with data for room with id equal 1');
               t.end();
