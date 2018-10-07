@@ -1,20 +1,109 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    {{>head}}
-  </head>
-  <body>
-    <header>
-      {{>header}}
-    </header>
-    <main>
-      {{{body}}}
-    </main>
-    <footer>
-      {{>footer}}
-    </footer>
-  </body>
-  {{#if script}}
-    <script src="/js/{{script}}.js"></script>
-  {{/if}}
+
+<head>
+  {{>head}}
+</head>
+
+<body>
+  <header>
+    {{>header}}
+  </header>
+  <main>
+    {{{body}}}
+  </main>
+  <footer>
+    {{>footer}}
+  </footer>
+
+  <section class='details--model'>
+
+    {{!-- Details Form --}}
+    <div class="details--model__content">
+      <span class="details--model__close">&times;</span>
+      <div class="details--model__img">
+        <img src="./room.jpeg" alt="Room Image">
+      </div>
+      <div class="details--model__details ">
+        <div class="details--model__details--room-detials">
+          <span class="room-detials--header"> Detalis : </span>
+          <p class="room-detials--para">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
+            qui natus earum a consequuntur corporis
+            deserunt hic et illum harum, amet voluptatibus minus, nisi dolor laborum, voluptatum fugiat ex temporibus.
+            Repudiandae esse distinctio sint laboriosam voluptates corrupti, ea inventore possimus? Aut voluptas
+            nostrum
+            facilis beatae consequuntur cupiditate, ipsum minima maiores fuga obcaecati ipsa saepe fugiat delectus
+          </p>
+        </div>
+        <div class="details--model__details--room-services">
+          <span class="room-services--header">Services : </span>
+          <p class='room-services--para'>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero dolore accusamus eaque eum cupiditate
+            odio,
+            quidem consectetur. Culpa dicta illo excepturi debitis asperiores optio voluptatibus quod. Possimus vitae
+            eveniet animi!
+          </p>
+        </div>
+      </div>
+      <div class="details--model--btns">
+        <input type="submit" value='Book it' class="details--model--btns--blue">
+        <input type="submit" value='Cancel' class="details--model--btns--red">
+      </div>
+    </div>
+
+    {{!-- Inputs Form --}}
+    <div class="submit--model__content">
+      <a class="submit--model__close">&times; </a>
+      <div class="submit--model__content--header">
+        <h2 class="submit--model__content--header--first">Marna House</h2>
+        <h3 class="submit--model__content--header--second">Where Everything Is Cool</h3>
+      </div>
+      <div class="submit--model__content--inputs">
+        <label class="submit--model__content--label--name"> First Name :
+          <input type="text" class="submit--model__content--input--name" placeholder="Type First Name ...">
+        </label>
+        <label class="submit--model__content--label--name"> Last Name :
+          <input type="text" class="submit--model__content--input--name" placeholder="Type Last Name ...">
+        </label>
+        <label class="submit--model__content--label--name"> Email Address :
+          <input type="text" class="submit--model__content--input--name" placeholder="Type Email Address ...">
+        </label>
+        <label class="submit--model__content--label--name"> Phone Number :
+          <input type="text" class="submit--model__content--input--name" placeholder="Type Phone Number ...">
+        </label>
+      </div>
+      <div class="details--model--btns">
+        <input type="submit" value='Comfirm' class="submit--model--btns--blue">
+        <input type="submit" value='Cancel' class="submit--model--btns--red">
+      </div>
+    </div>
+
+
+    <div class="confirmation--model__content hide">
+      <a class="confirmation--model__close">&times; </a>
+      <div class="submit--model__content--header">
+        <h2 class="submit--model__content--header--first">Marna House</h2>
+        <h3 class="submit--model__content--header--second">Where Everything Is Cool</h3>
+      </div>
+      <div class="confirmation--model__content--message">
+        <h4 class="confirmation--model__content--message-content">
+          Thanks You , Your order under confrimation when everything is good we will send message to you on your email
+          address and on your smartphone
+        </h4>
+      </div>
+    </div>
+
+
+
+  </section>
+
+</body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{{#each script}}
+  <script src="js/{{this}}.js"></script>
+{{/each}}
+
+
 </html>

@@ -1,0 +1,41 @@
+.footer{
+  margin-top: 5rem;
+  width: 100%;
+  padding: 5rem 0 ;
+  background: #333;
+  font-family: lato;
+
+}
+.footer--container{
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.footer__logo{
+  transform: translateX(-10rem);
+}
+.footer__logo--first{
+  font-size: 4rem;
+  color: #eee;
+  text-transform: uppercase;
+}
+.footer__logo--second{
+  font-size: 2rem;
+  color: #eee;
+  text-transform: capitalize;
+  transform: translateX(10rem);
+}
+.footer_contact-us{
+  padding: 5rem 3rem;
+  width: 50%;
+  border-left: 1px solid #eee;
+}
+.footer_contact-us h4{
+  font-size: 1.5rem;
+  color: #eee;
+  margin-top: 1rem;
+  
+}
