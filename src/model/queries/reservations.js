@@ -13,6 +13,7 @@ const addReservation = (object) => {
       if (err) {
         reject(err);
       } else {
+        console.log(result);
         resolve(result.rows);
       }
     });

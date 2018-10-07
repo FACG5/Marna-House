@@ -218,7 +218,7 @@ tape('Testing get Available Rooms', (t) => {
         { room_num: 7, price: 100 },
         { room_num: 8, price: 100 },
         { room_num: 9, price: 100 }],
-        result, 'the result should be 8 (from room 2 to room 9) Rooms');
+      result, 'the result should be 8 (from room 2 to room 9) Rooms');
       t.end();
     })
     .catch(err => t.error(err));
@@ -244,7 +244,7 @@ tape('Testing get Available Rooms', (t) => {
         { room_num: 7, price: 100 },
         { room_num: 8, price: 100 },
         { room_num: 9, price: 100 }],
-        result, 'the result should be 7 (from room 3 to room 9) Rooms');
+      result, 'the result should be 7 (from room 3 to room 9) Rooms');
       t.end();
     })
     .catch(err => t.error(err));
@@ -272,7 +272,7 @@ tape('Testing get Available Rooms', (t) => {
         { room_num: 7, price: 100 },
         { room_num: 8, price: 100 },
         { room_num: 9, price: 100 }],
-        result, 'the result should be all Rooms ');
+      result, 'the result should be all Rooms ');
       t.end();
     })
     .catch(err => t.error(err));
