@@ -108,3 +108,38 @@
   background: rgb(47, 69, 129);
 
 }
+
+.main--section--buttons{
+  margin: 0 auto;
+  width: fit-content;
+  margin-top: 10rem;
+}
+
+.main--section--buttons--next{
+  padding: 1rem 5rem; 
+  background: #5D83E8;
+  font-size: 2.5rem;
+  color: white;
+  border: 0;
+  margin-right: 5rem;
+  font-weight: 700;
+  transition: all .6s;
+}
+
+.main--section--buttons--cancel{
+  padding: 1rem 5rem; 
+  background: red;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  border: 0;
+  transition: all .6s;
+}
+
+.main--section--buttons--cancel:hover{
+  background: rgb(170, 8, 8);
+}
+
+.main--section--buttons--next:hover{
+  background: rgb(31, 66, 163);
+}

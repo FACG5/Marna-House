@@ -14,7 +14,6 @@
 }
 .details--model__content {
 
-  display: none;
   height: 75vh;
   width: 38%;
   padding: 2rem;
@@ -32,7 +31,9 @@
  
 
 }
-.details--model__close {
+.details--model__close,
+.submit--model__close,
+.confirmation--model__close {
   font-size: 3rem;
   font-weight: 900;
   color: #333;
@@ -41,7 +42,9 @@
   transition: all .5s;
 }
 
-.details--model__close:hover {
+.details--model__close:hover,
+.submit--model__close:hover,
+.confirmation--model__close:hover {
   color: rgb(255, 56, 49);
 }
 .details--model__img {
@@ -58,6 +61,7 @@
   width: 90%;
   margin: 0 auto;
   font-size: 1.4rem;
+  justify-content: space-around;
 }
 .room-detials--para{
   margin-top: 1.5rem;
@@ -87,22 +91,25 @@ justify-content: center;
   cursor: pointer;
   border-radius: 3px;
 }
-.details--model--btns--blue{
+.details--model--btns--blue,
+.submit--model--btns--blue{
   background: rgb(0, 129, 216);
 }
-.details--model--btns--blue:hover{
+.details--model--btns--blue:hover,
+.submit--model--btns--blue:hover {
   background: rgb(26, 109, 165);
 }
-.details--model--btns--red{
+.details--model--btns--red,
+.submit--model--btns--red{
   background: rgb(253, 52, 52);
 }
 
-.details--model--btns--red:hover{
+.details--model--btns--red:hover,
+.submit--model--btns--red:hover{
   background: rgb(173, 21, 21);
 }
 
 .submit--model__content{
-  display: none;
   height: 75vh;
   width: 38%;
   padding: 2rem;
@@ -138,12 +145,14 @@ justify-content: center;
   font-weight: 100;
   margin-left: 8rem;
 }
+
 .submit--model__content--label--name {
   display: block;
   font-size: 2rem;
   color: rgb(68, 68, 68);
   margin: 1rem 5rem;
 }
+
 .submit--model__content--input--name {
   display: block;
   width: 35rem;
@@ -155,8 +164,8 @@ justify-content: center;
   height: 1.5rem;
   outline: none;
 }
+
 .confirmation--model__content{
-  display: none;
   height: 75vh;
   width: 38%;
   padding: 2rem;
@@ -164,7 +173,6 @@ justify-content: center;
   left: 50%;
   top: 50%;
   border-radius: 5px;
-
   transform: translate(-50%,-50%);
   background: #eee;
   animation-name: detials-animate ;
@@ -180,6 +188,7 @@ justify-content: center;
   top: 50%;
   transform: translate(-50%,-50%);
 }
+
 .confirmation--model__content--message-content {
   font-size:2.5rem;
   font-weight: 300;
@@ -187,6 +196,14 @@ justify-content: center;
   text-align: center;
   line-height: 3.5rem;
   color: rgb(80, 80, 80);
+}
+
+.details--model__price{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5rem;
+  font-size: 2rem;
+  font-weight: 300;
 }
 
 @keyframes model-animate {
@@ -200,6 +217,7 @@ justify-content: center;
     
   }
 }
+
 @keyframes detials-animate {
   0% {
     transform: translate(-50%,-55%);
@@ -210,4 +228,8 @@ justify-content: center;
     opacity: 1;
     
   }
+}
+
+.hide{
+  display: none;
 }

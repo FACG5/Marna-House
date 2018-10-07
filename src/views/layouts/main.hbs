@@ -17,16 +17,14 @@
   </footer>
 
   <section class='details--model'>
-  
+
     {{!-- Details Form --}}
     <div class="details--model__content">
-      <a class="details--model__close">&times; </a>
+      <span class="details--model__close">&times;</span>
       <div class="details--model__img">
         <img src="./room.jpeg" alt="Room Image">
-        <img src="./room.jpeg" alt="Room Image">
-
       </div>
-      <div class="details--model__details">
+      <div class="details--model__details ">
         <div class="details--model__details--room-detials">
           <span class="room-detials--header"> Detalis : </span>
           <p class="room-detials--para">
@@ -56,7 +54,7 @@
 
     {{!-- Inputs Form --}}
     <div class="submit--model__content">
-      <a class="details--model__close">&times; </a>
+      <a class="submit--model__close">&times; </a>
       <div class="submit--model__content--header">
         <h2 class="submit--model__content--header--first">Marna House</h2>
         <h3 class="submit--model__content--header--second">Where Everything Is Cool</h3>
@@ -76,23 +74,24 @@
         </label>
       </div>
       <div class="details--model--btns">
-        <input type="submit" value='Comfirm' class="details--model--btns--blue">
-        <input type="submit" value='Cancel' class="details--model--btns--red">
+        <input type="submit" value='Comfirm' class="submit--model--btns--blue">
+        <input type="submit" value='Cancel' class="submit--model--btns--red">
       </div>
     </div>
-    
 
-        <div class="confirmation--model__content">
-      <a class="details--model__close">&times; </a>
+
+    <div class="confirmation--model__content hide">
+      <a class="confirmation--model__close">&times; </a>
       <div class="submit--model__content--header">
         <h2 class="submit--model__content--header--first">Marna House</h2>
         <h3 class="submit--model__content--header--second">Where Everything Is Cool</h3>
       </div>
-          <div class="confirmation--model__content--message">
-            <h4 class="confirmation--model__content--message-content">
-              Thanks You , Your order under confrimation when everything is good we will send message to you on your email address and on your smartphone 
-            </h4>
-          </div>
+      <div class="confirmation--model__content--message">
+        <h4 class="confirmation--model__content--message-content">
+          Thanks You , Your order under confrimation when everything is good we will send message to you on your email
+          address and on your smartphone
+        </h4>
+      </div>
     </div>
 
 
@@ -100,8 +99,11 @@
   </section>
 
 </body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 {{#each script}}
-<script src="js/{{this}}.js"></script>
+  <script src="js/{{this}}.js"></script>
 {{/each}}
+
 
 </html>
