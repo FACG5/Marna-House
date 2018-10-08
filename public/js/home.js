@@ -11,6 +11,7 @@ const confirmationModel = document.querySelector('.confirmation--model__content'
 const nextBtn = document.querySelector('.main--section--buttons--next');
 const clearBtn = document.querySelector('.main--section--buttons--cancel');
 const selectedRooms = [];
+let selectedTime = {};
 
 function collectData() {
   return {
@@ -31,6 +32,7 @@ function vaildationOfSearch() {
 
 searchBtn.addEventListener('click', (event) => {
   if (vaildationOfSearch()) {
+    selectedTime = collectData();
     getAvailableRooms('/available-rooms', collectData(), 'post');
   }
 });
@@ -124,7 +126,7 @@ function detailsModelShow(room) {
   const cancelBtn = detailsModel.querySelector('.details--model--btns--red');
   const bookBtn = detailsModel.querySelector('.details--model--btns--blue');
 
-  details.textContent = room.description;
+  details.textContent = room.descriptions;
   services.textContent = room.services;
   img.setAttribute('src', room.img);
   closeBtn.addEventListener('click', hideAllModels);
@@ -150,6 +152,20 @@ mainModel.addEventListener('click', (event) => {
   }
 });
 
+function collectUserInfo() {
+  const firstName = document.querySelector('#first-name').value;
+  const lastName = document.querySelector('#last-name').value;
+  const emailAddress = document.querySelector('#email').value;
+  const phoneNum = document.querySelector('#phone').value;
+
+  return {
+    firstName,
+    lastName,
+    emailAddress,
+    phoneNum,
+  };
+}
+
 nextBtn.addEventListener('click', () => {
   hideAllModels();
   submitModel.setAttribute('style', 'display:block;');
@@ -159,12 +175,26 @@ nextBtn.addEventListener('click', () => {
   const submitModelBtn = submitModel.querySelector('.submit--model--btns--blue');
   cancelModelBtn.addEventListener('click', hideAllModels);
   closeModelBtn.addEventListener('click', hideAllModels);
-  submitModelBtn.addEventListener('click', () => console.log('Submit Button'));
-
+  submitModelBtn.addEventListener('click', () => {
+    const reservationInfo = {
+      rooms: selectedRooms,
+      userInfo: collectUserInfo(),
+      from: selectedTime.from,
+      to: selectedTime.to,
+    };
+    fetch('/reservations', {
+      method: 'post',
+      body: JSON.stringify(reservationInfo),
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(res => res.json())
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  });
 });
 
 // To Vaild Email ;
 function validateEmail(email) {
-  let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return regex.test(String(email).toLowerCase());
 }
