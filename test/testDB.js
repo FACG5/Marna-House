@@ -4,8 +4,9 @@ const {
   addRoom, deleteRoom, getRoom, updateRoom, avaliableRooms,
 } = require('./../src/model/queries/rooms');
 const dbBuild = require('./../src/model/database/db_build');
-const dbFackData = require('./../src/model/database/db_fackData');
+const dbFakeData = require('./../src/model/database/db_fackData');
 const utilities = require('./../src/model/queries/utilities');
+const { addReservation } = require('./../src/model/queries/reservations');
 
 //  testing build database
 tape('Testing build database ', (t) => {
@@ -183,7 +184,7 @@ tape('Testing get Available Rooms ', (t) => {
   dbBuild()
     .then((result) => {
       t.notEqual(result, undefined, 'The Result from add fack data should be not equal undefiend');
-      return dbFackData();
+      return dbFakeData();
     })
     .then((result) => {
       t.notEqual(result, undefined, 'The Result from add fack data should be not equal undefiend');
@@ -201,7 +202,7 @@ tape('Testing get Available Rooms', (t) => {
   dbBuild()
     .then((result) => {
       t.notEqual(result, undefined, 'The Result from add fack data should be not equal undefiend');
-      return dbFackData();
+      return dbFakeData();
     })
     .then((result) => {
       t.notEqual(result, undefined, 'The Result from add fack data should be not equal undefiend');
@@ -228,7 +229,7 @@ tape('Testing get Available Rooms', (t) => {
   dbBuild()
     .then((result) => {
       t.notEqual(result, undefined, 'The Result from add fack data should be not equal undefiend');
-      return dbFackData();
+      return dbFakeData();
     })
     .then((result) => {
       t.notEqual(result, undefined, 'The Result from add fack data should be not equal undefiend');
@@ -254,7 +255,7 @@ tape('Testing get Available Rooms', (t) => {
   dbBuild()
     .then((result) => {
       t.notEqual(result, undefined, 'The Result from add fack data should be not equal undefiend');
-      return dbFackData();
+      return dbFakeData();
     })
     .then((result) => {
       t.notEqual(result, undefined, 'The Result from add fack data should be not equal undefiend');
@@ -329,7 +330,6 @@ tape('Testing remove duplicated rows from array ', (t) => {
 
 // testing the reserved room in specify time ;
 tape('testing the reserved room in specify time', (t) => {
-
   const data = [
     {
       reservation_from: '2014-04-01',
@@ -356,7 +356,33 @@ tape('testing the reserved room in specify time', (t) => {
   t.end();
 });
 
+// testing the reserved room in specify time ;
+tape('testing add reservation', (t) => {
+  const reservationObject = {
+    user_id: 1,
+    reservation_from: '2015-05-01',
+    reservation_to: '2016-07-05',
+    room_id: '2',
+  };
+  dbBuild()
+    .then((result) => {
+      t.notEqual(result, undefined, 'the result of dbBuild Should be not equal undefined');
+      return dbFakeData();
+    })
+    .then((result) => {
+      t.notEqual(result, undefined, 'the result of dbFakeData Should be not equal undefined');
+      return addReservation(reservationObject);
+    })
+    .then((result) => {
+      const { id, room_id: roomId, user_id: userId } = result[0];
+      t.equal(id, 10, 'the id of inserted row is equal 10');
+      t.equal(roomId, 2, 'the room_id of inserted row is equal 2');
+      t.equal(userId, 1, 'the user_id of inserted row is equal 1');
+      t.end();
+    })
+    .catch(err => t.error(err));
+});
 
 tape.onFinish = () => {
-  process.exit();
+  process.exit(1);
 };
