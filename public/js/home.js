@@ -12,6 +12,7 @@ const nextBtn = document.querySelector('.main--section--buttons--next');
 const clearBtn = document.querySelector('.main--section--buttons--cancel');
 const selectedRooms = [];
 
+
 function collectData() {
   return {
     from: fromField.value,
@@ -159,7 +160,6 @@ nextBtn.addEventListener('click', () => {
   const submitModelBtn = submitModel.querySelector('.submit--model--btns--blue');
   cancelModelBtn.addEventListener('click', hideAllModels);
   closeModelBtn.addEventListener('click', hideAllModels);
-  submitModelBtn.addEventListener('click', () => console.log('Submit Button'));
 
 });
 
