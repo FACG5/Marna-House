@@ -1,3 +1,4 @@
+
 const dbConnection = require('./../database/db_connection');
 const utilities = require('./utilities');
 
@@ -80,7 +81,7 @@ const updateRoom = (object) => {
 
 const avaliableRooms = (object) => {
   const sql = {
-    text: "select rooms.id,rooms.imgs , rooms.room_num , rooms.price ,  reservations.reservation_from , reservations.reservation_to ,reservations.status   from rooms left join reservations ON reservations.room_id = rooms.id where ( rooms.type = $1 ) and ( ( reservations.status = 'confirmed') or (reservations.status is null) ) order by rooms.id",
+    text: "select rooms.id , rooms.room_num , rooms.price ,  reservations.reservation_from , reservations.reservation_to ,reservations.status   from rooms left join reservations ON reservations.room_id = rooms.id where rooms.type = $1 and ( reservations.status = 'confirmed' OR reservations.status = 'underconfirm' ) or (reservations.status is null)  order by rooms.id",
     values: [object.type],
   };
   return new Promise((resolve, reject) => {
