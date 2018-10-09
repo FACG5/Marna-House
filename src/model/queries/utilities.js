@@ -5,6 +5,7 @@ const removeDuplicated = (allRooms) => {
     filterdRooms[i] = {
       room_num: allRooms[i].room_num,
       price: allRooms[i].price,
+      img: allRooms[i].imgs,
     };
     let j = 1;
     while ((allRooms[i + j] !== undefined) && (allRooms[i].room_num === allRooms[i + j].room_num)) {

@@ -14,8 +14,8 @@
 }
 .details--model__content {
 
-  height: 75vh;
-  width: 38%;
+  min-height: 75vh;
+  min-width: 38%;
   padding: 2rem;
   position: absolute;
   left: 50%;
@@ -110,8 +110,8 @@ justify-content: center;
 }
 
 .submit--model__content{
-  height: 75vh;
-  width: 38%;
+  min-height: 75vh;
+  min-width: 38%;
   padding: 2rem;
   position: absolute;
   left: 50%;
