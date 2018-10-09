@@ -13,9 +13,14 @@ const submitModel = document.querySelector('.submit--model__content');
 const confirmationModel = document.querySelector('.confirmation--model__content');
 const nextBtn = document.querySelector('.main--section--buttons--next');
 const clearBtn = document.querySelector('.main--section--buttons--cancel');
+<<<<<<< HEAD
 const confirmAlert = document.querySelector('.sumbit-error-alert');
 const titleTag = document.querySelector('.main--section__header');
 let selectedRooms = [];
+=======
+const selectedRooms = [];
+let selectedTime = {};
+>>>>>>> aea99edb588dc4be6be10176f6ef9fe0a9b7e677
 
 flatpickr(fromField, {
   minDate: 'today',
@@ -157,7 +162,7 @@ function detailsModelShow(room) {
   const bookBtn = detailsModel.querySelector('.details--model--btns--blue');
   const imgTag = detailsModel.querySelector('.details--model__img img');
 
-  details.textContent = room.description;
+  details.textContent = room.descriptions;
   services.textContent = room.services;
   img.setAttribute('src', room.imgs);
   closeBtn.addEventListener('click', hideAllModels);
@@ -183,6 +188,20 @@ mainModel.addEventListener('click', (event) => {
   }
 });
 
+function collectUserInfo() {
+  const firstName = document.querySelector('#first-name').value;
+  const lastName = document.querySelector('#last-name').value;
+  const emailAddress = document.querySelector('#email').value;
+  const phoneNum = document.querySelector('#phone').value;
+
+  return {
+    firstName,
+    lastName,
+    emailAddress,
+    phoneNum,
+  };
+}
+
 nextBtn.addEventListener('click', () => {
   hideAllModels();
   submitModel.setAttribute('style', 'display:block;');
@@ -192,15 +211,32 @@ nextBtn.addEventListener('click', () => {
   const submitModelBtn = submitModel.querySelector('.submit--model--btns--blue');
   cancelModelBtn.addEventListener('click', hideAllModels);
   closeModelBtn.addEventListener('click', hideAllModels);
-  submitModelBtn.addEventListener('click', makeReservation);
-});
-
-clearBtn.addEventListener('click', () => {
-  const buttons = document.querySelectorAll('.room_book_btn');
-  selectedRooms = [];
-  for (let i = 0; i < buttons.length; i += 1) {
-    styleingBtns(buttons[i]);
-  }
+  submitModelBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const reservationInfo = {
+      rooms: selectedRooms,
+      userInfo: collectUserInfo(),
+      from: selectedTime.from,
+      to: selectedTime.to,
+    };
+    fetch('/reservations', {
+      method: 'post',
+      body: JSON.stringify(reservationInfo),
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(res => res.json())
+      .then((res) => {
+        res.forEach((elem) => {
+          if (elem.err) {
+            // show error modal
+          } else {
+            // show success
+          }
+        });
+        // show email conirmation modal or error modal
+      })
+      .catch(err => console.log(err));
+  });
 });
 
 // To Vaild Email ;
