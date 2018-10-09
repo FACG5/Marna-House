@@ -175,7 +175,8 @@ nextBtn.addEventListener('click', () => {
   const submitModelBtn = submitModel.querySelector('.submit--model--btns--blue');
   cancelModelBtn.addEventListener('click', hideAllModels);
   closeModelBtn.addEventListener('click', hideAllModels);
-  submitModelBtn.addEventListener('click', () => {
+  submitModelBtn.addEventListener('click', (e) => {
+    e.preventDefault();
     const reservationInfo = {
       rooms: selectedRooms,
       userInfo: collectUserInfo(),
@@ -188,7 +189,16 @@ nextBtn.addEventListener('click', () => {
       headers: { 'Content-Type': 'application/json' },
     })
       .then(res => res.json())
-      .then(res => console.log(res))
+      .then((res) => {
+        res.forEach((elem) => {
+          if (elem.err) {
+            // show error modal
+          } else {
+            // show success
+          }
+        });
+        // show email conirmation modal or error modal
+      })
       .catch(err => console.log(err));
   });
 });
