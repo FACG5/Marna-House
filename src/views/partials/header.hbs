@@ -1,27 +1,57 @@
-<div class="header">
-  <div class="about-us">
-    <h1>Marna House</h1>
-    <h2>Where Every Is Cool</h2>
-    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus</p>
-  </div>
-  <div class="search-form">
-    <div class="about">
-      <h3>Find Rooms On Marna</h2>
-        <h5>Discover entire homes and private rooms perfect for any trip .</h4>
-       </div>
-        <label for="check-in">
-          <span>check-in</span>
-          <input type="date" id="check-in" required></label>
-          <label for="check-out">
-            <span>check-out</span>
-            <input type="date" id="check-out" required></label>
-            <span>Type</span>
-            <select required class="options">
-              <option value="Single"> Single</option>
-              <option value="Double"> Double</option>
-              <option value="Trible"> Trible</option>
-              <option value="Mixed"> Mixed</option>
-            </select>
-            <button type="button" name="button" id="search">Search</button>
-  </div>
+<div class="header__container">
+  <nav class="nav">
+    <div class="nav__logo">
+      <span class="nav__logo__item">Marna House</span>
+    </div>
+    <div class="nav__links">
+      <ul class="nav__links__list">
+        <li class="nav__links__list__item">Admin</li>
+      </ul>
+    </div>
+  </nav>
+  <section class="middle--section">
+
+    <div class="middle--section__form">
+      <div class="middle--section__form__header">
+        <span class="middle--section__form__header--first">Find rooms on marna house
+        </span>
+        <span class="middle--section__form__header--second">Discover entire homes and private rooms perfect for any
+          trip.</span>
+      </div>
+      <div class="middle--section__form__main">
+        <label class="middle--section__form__main--label">
+          From :
+        </label>
+        <input type="date" class="middle--section__form__main--input middle--section__form__main--input--from" >
+        <label class="middle--section__form__main--label">
+          To :
+        </label>
+        <input type="date" class="middle--section__form__main--input middle--section__form__main--input--to">
+
+        <label class="middle--section__form__main--label">
+          Type :
+        </label>
+        <select name="" id="" class="middle--section__form__main--dropbox">
+          <option value="Single">Single</option>
+          <option value="Double">Double</option>
+          <option value="Triple">Triple</option>
+        </select>
+        <span class='middle--section__form__main--alert'></span>
+        <input type="submit" class="middle--section__form__main--submit" value="Search ">
+      </div>
+    </div>
+
+    <div class="middle--section__content">
+      <h1 class="middle--section__content--head">
+        Marna House
+      </h1>
+      <h2 class="middle--section__content--sub">
+        Where Everything are cool 
+      </h2>
+      <p class="middle--section__content--para">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente accusamus itaque aliquid cumque officiis! Soluta sunt dicta vero, eaque, modi voluptatem ad praesentium eius nulla non assumenda nesciunt, totam ab.
+      </p>
+    </div>
+
+  </section>
 </div>

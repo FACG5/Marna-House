@@ -1,109 +1,33 @@
-const data = [
-  {
-    id: 1,
-    room_num: 2,
-    description: 'nice room',
-    price: 500,
-    imgs: 'room.jpg',
-    services: 'some servieces',
-    type: 'single',
-  },
-  {
-    id: 1,
-    room_num: 2,
-    description: 'nice room',
-    price: 500,
-    imgs: 'room.jpg',
-    services: 'some servieces',
-    type: 'single',
-  },
-  {
-    id: 1,
-    room_num: 2,
-    description: 'nice room',
-    price: 500,
-    imgs: 'room.jpg',
-    services: 'some servieces',
-    type: 'single',
-  },
-  {
-    id: 1,
-    room_num: 2,
-    description: 'nice room',
-    price: 500,
-    imgs: 'room.jpg',
-    services: 'some servieces',
-    type: 'single',
-  },
-  {
-    id: 1,
-    room_num: 2,
-    description: 'nice room',
-    price: 500,
-    imgs: 'room.jpg',
-    services: 'some servieces',
-    type: 'single',
-  },
-  {
-    id: 1,
-    room_num: 2,
-    description: 'nice room',
-    price: 500,
-    imgs: 'room.jpg',
-    services: 'some servieces',
-    type: 'single',
-  },
-  {
-    id: 1,
-    room_num: 2,
-    description: 'nice room',
-    price: 500,
-    imgs: 'room.jpg',
-    services: 'some servieces',
-    type: 'single',
-  },
-  {
-    id: 2,
-    room_num: 3,
-    description: 'nice room',
-    price: 500,
-    imgs: 'room.jpg',
-    services: 'some servieces',
-    type: 'single',
-  },
-  {
-    id: 3,
-    room_num: 4,
-    description: 'nice room',
-    price: 500,
-    imgs: 'room.jpg',
-    services: 'some servieces',
-    type: 'double',
-  },
-  {
-    id: 4,
-    room_num: 5,
-    description: 'nice room',
-    price: 500,
-    imgs: 'room.jpg',
-    services: 'some servieces',
-    type: 'triple',
-  },
-];
+const fakeData = require('./../model/fakeData');
+const { avaliableRooms, getRoom } = require('./../model/queries/rooms');
 
 exports.get = (req, res) => {
-  // filter the data based on the room type
-  const filteredData = {
-    single: data.filter(room => room.type === 'single'),
-    double: data.filter(room => room.type === 'double'),
-    triple: data.filter(room => room.type === 'triple'),
-  };
-
   res.render('home', {
-    style: 'style',
-    style_special: 'home',
+    style:
+      [
+        'home',
+        'homeHeader',
+        'general',
+        'homeFooter',
+        'model',
+      ],
     title: 'Home',
-    script: 'home',
-    data: filteredData,
+    sectionType: 'single :',
+    rooms: fakeData,
+    script: ['home'],
   });
+};
+
+exports.availableRooms = (req, res) => {
+  avaliableRooms(req.body)
+    .then((result) => {
+      res.send({ result });
+    })
+    .catch(() => res.send({ Error: 'there is error' }));
+};
+
+exports.roomDetails = (req, res) => {
+  getRoom(req.params.id)
+    .then(room => res.send({ result: room.rows }))
+    .catch(() => res.send({ Error: 'there is error' }));
 };
