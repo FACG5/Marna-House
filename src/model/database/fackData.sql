@@ -107,3 +107,7 @@ INSERT INTO reservations
 INSERT INTO reservations
   (reservation_from , reservation_to , room_id , user_id,status) VALUES
   ('2016-01-01','2016-11-05',7,7,'confirmed');
+
+INSERT INTO reservations
+  (reservation_from , reservation_to , room_id , user_id,status) VALUES
+  ('2018-10-08','2018-11-05',7,7,'underconfirm');
