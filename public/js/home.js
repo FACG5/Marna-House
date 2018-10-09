@@ -13,14 +13,10 @@ const submitModel = document.querySelector('.submit--model__content');
 const confirmationModel = document.querySelector('.confirmation--model__content');
 const nextBtn = document.querySelector('.main--section--buttons--next');
 const clearBtn = document.querySelector('.main--section--buttons--cancel');
-<<<<<<< HEAD
 const confirmAlert = document.querySelector('.sumbit-error-alert');
 const titleTag = document.querySelector('.main--section__header');
-let selectedRooms = [];
-=======
 const selectedRooms = [];
-let selectedTime = {};
->>>>>>> aea99edb588dc4be6be10176f6ef9fe0a9b7e677
+const selectedTime = {};
 
 flatpickr(fromField, {
   minDate: 'today',
@@ -29,8 +25,6 @@ flatpickr(fromField, {
 flatpickr(toField, {
   minDate: 'today',
 });
-
-const reservationInterval = {};
 
 function availableRoomData() {
   return {
@@ -56,8 +50,8 @@ searchBtn.addEventListener('click', (event) => {
   if (vaildationOfSearch()) {
     const data = availableRoomData();
     getAvailableRooms('/available-rooms', data, 'post');
-    reservationInterval.from = fromField.value;
-    reservationInterval.to = toField.value;
+    selectedTime.from = fromField.value;
+    selectedTime.to = toField.value;
     titleTag.textContent = `${data.type.toUpperCase()} :`;
   }
 });
@@ -151,30 +145,6 @@ function styleingBtns(button) {
   }
 }
 
-function detailsModelShow(room) {
-  hideAllModels();
-
-  const details = detailsModel.querySelector('.room-detials--para');
-  const services = detailsModel.querySelector('.room-services--para');
-  const img = detailsModel.querySelector('.details--model__img img');
-  const closeBtn = detailsModel.querySelector('.details--model__close');
-  const cancelBtn = detailsModel.querySelector('.details--model--btns--red');
-  const bookBtn = detailsModel.querySelector('.details--model--btns--blue');
-  const imgTag = detailsModel.querySelector('.details--model__img img');
-
-  details.textContent = room.descriptions;
-  services.textContent = room.services;
-  img.setAttribute('src', room.imgs);
-  closeBtn.addEventListener('click', hideAllModels);
-  cancelBtn.addEventListener('click', hideAllModels);
-
-  mainModel.setAttribute('style', 'display:block;');
-  detailsModel.setAttribute('style', 'display:block;');
-  bookBtn.setAttribute('room_id', room.room_num);
-  styleingBtns(bookBtn);
-  bookBtn.addEventListener('click', bookingEvent);
-}
-
 function hideAllModels() {
   mainModel.setAttribute('style', 'display:none;');
   detailsModel.setAttribute('style', 'display:none;');
@@ -201,6 +171,23 @@ function collectUserInfo() {
     phoneNum,
   };
 }
+const vaildationMakeReservation = (userInfo) => {
+  const regexName = /^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/;
+  const regexPhone = /^\d+$/;
+  console.log(userInfo);
+  if (!regexName.test(userInfo.firstName)) {
+    return 'Please Check First Name ';
+  }
+  if (!(regexName.test(userInfo.lastName))) {
+    return 'Please Check Last Name';
+  }
+  if (!validateEmail(userInfo.emailAddress)) {
+    return 'Please Check Your Email Address';
+  } if (!regexPhone.test(userInfo.phoneNum)) {
+    return 'Please Check Your Phone Number';
+  }
+  return null;
+};
 
 nextBtn.addEventListener('click', () => {
   hideAllModels();
@@ -213,29 +200,39 @@ nextBtn.addEventListener('click', () => {
   closeModelBtn.addEventListener('click', hideAllModels);
   submitModelBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    const reservationInfo = {
-      rooms: selectedRooms,
-      userInfo: collectUserInfo(),
-      from: selectedTime.from,
-      to: selectedTime.to,
-    };
-    fetch('/reservations', {
-      method: 'post',
-      body: JSON.stringify(reservationInfo),
-      headers: { 'Content-Type': 'application/json' },
-    })
-      .then(res => res.json())
-      .then((res) => {
-        res.forEach((elem) => {
-          if (elem.err) {
-            // show error modal
-          } else {
-            // show success
-          }
-        });
-        // show email conirmation modal or error modal
+    const userInfo = collectUserInfo();
+    const vaildationValue = vaildationMakeReservation(userInfo);
+    if (!vaildationValue) {
+      console.log(selectedTime);
+      const reservationInfo = {
+        rooms: selectedRooms,
+        userInfo,
+        from: selectedTime.from,
+        to: selectedTime.to,
+      };
+      fetch('/reservations', {
+        method: 'post',
+        body: JSON.stringify(reservationInfo),
+        headers: { 'Content-Type': 'application/json' },
       })
-      .catch(err => console.log(err));
+        .then(res => res.json())
+        .then((res) => {
+          res.forEach((elem) => {
+            if (elem.err) {
+              // show error modal
+            } else {
+              // show success
+            }
+          });
+          // show email conirmation modal or error modal
+        })
+        .catch(err => console.log(err));
+    } else {
+      confirmAlert.textContent = vaildationValue;
+      setTimeout(() => {
+        confirmAlert.textContent = '';
+      }, 1000);
+    }
   });
 });
 
@@ -278,3 +275,31 @@ const makeReservation = () => {
     .then(res => console.log(res))
     .catch(err => console.log(err));
 };
+
+clearBtn.addEventListener('click', () => {
+  selectedRooms.splice(0, selectedRooms.length);
+  const allBtns = document.querySelectorAll('.room_book_btn');
+  allBtns.forEach(element => styleingBtns(element));
+});
+
+function detailsModelShow(room) {
+  hideAllModels();
+
+  const details = detailsModel.querySelector('.room-detials--para');
+  const services = detailsModel.querySelector('.room-services--para');
+  const img = detailsModel.querySelector('.details--model__img img');
+  const closeBtn = detailsModel.querySelector('.details--model__close');
+  const cancelBtn = detailsModel.querySelector('.details--model--btns--red');
+  const bookBtn = detailsModel.querySelector('.details--model--btns--blue');
+  details.textContent = room.description;
+  services.textContent = room.services;
+  img.setAttribute('src', room.imgs);
+  closeBtn.addEventListener('click', hideAllModels);
+  cancelBtn.addEventListener('click', hideAllModels);
+
+  mainModel.setAttribute('style', 'display:block;');
+  detailsModel.setAttribute('style', 'display:block;');
+  bookBtn.setAttribute('room_id', room.room_num);
+  styleingBtns(bookBtn);
+  bookBtn.addEventListener('click', bookingEvent);
+}
