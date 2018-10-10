@@ -4,6 +4,7 @@ const removeDuplicated = (allRooms) => {
   const filterdRooms = [];
   for (let i = 0; i < allRooms.length; i += 1) {
     filterdRooms[i] = {
+      id: allRooms[i].id,
       room_num: allRooms[i].room_num,
       price: allRooms[i].price,
       img: allRooms[i].imgs,
