@@ -50,23 +50,38 @@ exports.addReservations = (req, res) => {
       let counter = 0;
       const resArray = [];
       rooms.forEach((room_id) => {
-        addReservation({
-          user_id, reservation_from, reservation_to, room_id,
-        })
-          .then((reservationRes) => {
-            resArray.push({ room_id, msg: 'room bocked sucssesfully' });
-            counter += 1;
-            if (counter === rooms.length) {
-              res.send(resArray);
-            }
+        avaliableRooms(req.body)
+          .then((result) => {
+            addReservation({
+              user_id, reservation_from, reservation_to, room_id,
+            })
+              .then((reservationRes) => {
+                resArray.push({ room_id, msg: 'room bocked sucssesfully' });
+                counter += 1;
+                if (counter === rooms.length) {
+                  res.send(resArray);
+                }
+              })
+              .catch((err) => {
+                resArray.push({ room_id, error: 'this roome not available choose another one !' });
+                counter += 1;
+                if (counter === rooms.length) {
+                  res.send(resArray);
+                }
+              });
           })
-          .catch((err) => {
-            resArray.push({ room_id, error: 'this roome not available choose another one !' });
-            counter += 1;
-            if (counter === rooms.length) {
-              res.send(resArray);
-            }
-          });
+          .catch(() => console.log(({ Error: 'there is error' })));
       });
+    }).catch((err) => {
+      console.log(err);
+      if (err.code === 23505) {
+        if (err.detail.includes('email_address')) {
+          res.send({ error: 'Already Taken Email Address .' });
+        } else if (err.detail.includes('phone_num')) {
+          res.send({ error: 'Already Taken Phone Number .' });
+        }
+      } else {
+        res.send({ redirect: '/' });
+      }
     });
 };

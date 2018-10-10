@@ -50,8 +50,9 @@ searchBtn.addEventListener('click', (event) => {
   if (vaildationOfSearch()) {
     const data = availableRoomData();
     getAvailableRooms('/available-rooms', data, 'post');
-    selectedTime.from = fromField.value;
-    selectedTime.to = toField.value;
+    selectedTime.from = data.from;
+    selectedTime.to = data.to;
+    selectedTime.type = data.type
     titleTag.textContent = `${data.type.toUpperCase()} :`;
   }
 });
@@ -174,7 +175,6 @@ function collectUserInfo() {
 const vaildationMakeReservation = (userInfo) => {
   const regexName = /^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/;
   const regexPhone = /^\d+$/;
-  console.log(userInfo);
   if (!regexName.test(userInfo.firstName)) {
     return 'Please Check First Name ';
   }
@@ -203,12 +203,12 @@ nextBtn.addEventListener('click', () => {
     const userInfo = collectUserInfo();
     const vaildationValue = vaildationMakeReservation(userInfo);
     if (!vaildationValue) {
-      console.log(selectedTime);
       const reservationInfo = {
         rooms: selectedRooms,
         userInfo,
         from: selectedTime.from,
         to: selectedTime.to,
+        type: selectedTime.type,
       };
       fetch('/reservations', {
         method: 'post',
@@ -217,14 +217,20 @@ nextBtn.addEventListener('click', () => {
       })
         .then(res => res.json())
         .then((res) => {
-          res.forEach((elem) => {
-            if (elem.err) {
-              // show error modal
-            } else {
-              // show success
-            }
-          });
-          // show email conirmation modal or error modal
+          if (res.redirect) {
+            window.location.reload();
+          } else if (res.error) {
+            confirmAlert.textContent = res.error;
+          } else {
+            res.forEach((elem) => {
+              if (elem.err) {
+                // show error modal
+              } else {
+                // show success
+              }
+            });
+            // show email conirmation modal or error modal
+          }
         })
         .catch(err => console.log(err));
     } else {
