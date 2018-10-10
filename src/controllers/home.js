@@ -52,28 +52,36 @@ exports.addReservations = (req, res) => {
       rooms.forEach((room_id) => {
         avaliableRooms(req.body)
           .then((result) => {
-            addReservation({
-              user_id, reservation_from, reservation_to, room_id,
-            })
-              .then((reservationRes) => {
-                resArray.push({ room_id, msg: 'room bocked sucssesfully' });
-                counter += 1;
-                if (counter === rooms.length) {
-                  res.send(resArray);
-                }
+            const roomIds = result.map( item => item.id)
+            if (roomIds.includes(Number(room_id))) {
+              addReservation({
+                user_id, reservation_from, reservation_to, room_id,
               })
-              .catch((err) => {
-                resArray.push({ room_id, error: 'this roome not available choose another one !' });
-                counter += 1;
-                if (counter === rooms.length) {
-                  res.send(resArray);
-                }
-              });
+                .then((reservationRes) => {
+                  resArray.push({ room_id, msg: 'room bocked sucssesfully' });
+                  counter += 1;
+                  if (counter === rooms.length) {
+                    res.send(resArray);
+                  }
+                })
+                .catch((err) => {
+                  resArray.push({ room_id, error: 'this roome not available choose another one m !' });
+                  counter += 1;
+                  if (counter === rooms.length) {
+                    res.send(resArray);
+                  }
+                });
+            } else {
+              resArray.push({ room_id, error: 'this roome not available choose another one !' });
+              counter += 1;
+              if (counter === rooms.length) {
+                res.send(resArray);
+              }
+            }
           })
-          .catch(() => console.log(({ Error: 'there is error' })));
+          .catch(err => console.log(err, ({ Error: 'there is error' })));
       });
     }).catch((err) => {
-      console.log(err);
       if (err.code === 23505) {
         if (err.detail.includes('email_address')) {
           res.send({ error: 'Already Taken Email Address .' });
