@@ -4,8 +4,11 @@ const removeDuplicated = (allRooms) => {
   const filterdRooms = [];
   for (let i = 0; i < allRooms.length; i += 1) {
     filterdRooms[i] = {
+      id: allRooms[i].id,
       room_num: allRooms[i].room_num,
       price: allRooms[i].price,
+      img: allRooms[i].imgs,
+      type: allRooms[i].type,
     };
     let j = 1;
     while ((allRooms[i + j] !== undefined) && (allRooms[i].room_num === allRooms[i + j].room_num)) {
@@ -19,13 +22,20 @@ const filterResult = (from, to, allResult) => {
   const array = allResult.slice(0);
 
   for (let i = 0; i < array.length; i += 1) {
-    if ((from < array[i].reservation_from && array[i].reservation_from < to)) {
+    if ((from <= array[i].reservation_from && array[i].reservation_from <= to)) {
       removeElement(array[i].id, array);
       return filterResult(from, to, array);
-    } if ((from < array[i].reservation_to && array[i].reservation_to < to)) {
+    } if ((from <= array[i].reservation_to && array[i].reservation_to <= to)) {
+      removeElement(array[i].id, array);
+      return filterResult(from, to, array);
+    } if ((array[i].reservation_from <= from && from <= array[i].reservation_to)) {
+      removeElement(array[i].id, array);
+      return filterResult(from, to, array);
+    } if ((array[i].reservation_from <= to && to <= array[i].reservation_to)) {
       removeElement(array[i].id, array);
       return filterResult(from, to, array);
     }
+
   }
   return (array);
 };

@@ -9,11 +9,11 @@ CREATE TYPE user_status AS ENUM('new','block','confirmed');
 
 CREATE TABLE users(
     id serial primary key ,
-    first_name VARCHAR(20) NOT NULL,
-    last_name VARCHAR(20) NOT NULL,
-    email_address VARCHAR(50) UNIQUE NOT NULL  ,
-    phone_num VARCHAR(20) UNIQUE NOT NULL,
-    status user_status NOT NULL
+    username VARCHAR(20) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL  ,
+    password VARCHAR(100) NOT NULL,
+    status user_status NOT NULL,
+    isAdmin boolean not null
 );
 
 CREATE TABLE rooms(
@@ -38,13 +38,8 @@ CREATE TABLE reservations(
 
 
 
-CREATE TABLE admin(
-    id serial primary key,
-    username VARCHAR(20) NOT NULL ,
-    password VARCHAR(100) NOT NULL
-);
-INSERT INTO admin (username,password) VALUES
-  ('ahmed','$2b$10$brlqvEWThoj9laHRZbkGUeZd7RDNKVmdEckKiPbVsoWYJDQIqrfpu'); 
+INSERT INTO users (username,email,isAdmin,password,status) VALUES
+  ('admin','admin@admin.com',true,'$2b$10$brlqvEWThoj9laHRZbkGUeZd7RDNKVmdEckKiPbVsoWYJDQIqrfpu','confirmed'); 
 
 
 

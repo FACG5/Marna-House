@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/{{stylefile}}.css">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>{{title}}</title>
+</head>
+
+<body>
+
+
+
+  <!--  Header  -->
+  <header class="top_bar">
+    <h1 class="logo"><a href="/"> Marna House</a></h1>
+  </header>
+  <!-- End Of Header-->
+
+  <!-- Main Section -->
+  <main>
+    {{{body}}}
+  </main>
+  <!-- End Of Main Section -->
+
+
+</body>
+{{#if fetch}}
+<script src="./js/{{fetch}}.js"></script>
+{{/if}}
+{{#if fetchAPI}}
+<script src="./js/{{fetchAPI}}.js"></script>
+{{/if}}
+<script src="./js/{{domfile}}.js"></script>
+
+</html>

@@ -12,6 +12,7 @@ const addReservation = (object) => {
     db_connection.query(sql, (err, result) => {
       if (err) {
         reject(err);
+        console.log(err);
       } else {
         resolve(result.rows);
       }

@@ -1,7 +1,7 @@
 
 .main--section {
   box-sizing: border-box;
-  padding: 15rem 6rem;
+  padding: 5rem 6rem;
   width: 100%;
 }
 .main--section__header{
@@ -12,12 +12,6 @@
   transition: all 1s;
   cursor: default;
 }
-
-.main--section__header:hover{
-  transform: skewY(4deg);
-
-}
-
 .main--section__result {
   margin: 1rem auto ;
   display: flex;
@@ -56,7 +50,7 @@
   width: 25rem;
   background:#eee ;
   transform: rotateY(180deg);
-  transition: all 1s;
+  transition: all .5s;
   position: absolute;
   top: 0;
   right: 0;
@@ -68,7 +62,7 @@
   align-items: center;
 }
 .main--section__result__item--img--front{
-  transition: all 1s;
+  transition: all .5s;
   position: absolute;
   top: 0;
   right: 0;
@@ -124,6 +118,8 @@
   margin-right: 5rem;
   font-weight: 700;
   transition: all .6s;
+  cursor: pointer;
+  border-radius: 3px
 }
 
 .main--section--buttons--cancel{
@@ -133,7 +129,9 @@
   font-weight: 700;
   color: white;
   border: 0;
+  cursor: pointer;
   transition: all .6s;
+  border-radius: 3px;
 }
 
 .main--section--buttons--cancel:hover{

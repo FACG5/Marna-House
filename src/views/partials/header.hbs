@@ -5,7 +5,20 @@
     </div>
     <div class="nav__links">
       <ul class="nav__links__list">
-        <li class="nav__links__list__item">Admin</li>
+
+        {{#if loginstatus}}
+        <a href="/login" style="color:white; list-style:none; text-decoration:none;">
+          <li class="nav__links__list__item" href="/login"> Login </li>
+        </a>
+        <a href="/signup" style="color:white; list-style:none; text-decoration:none;">
+          <li class="nav__links__list__item"> Sign Up </li>
+        </a>
+        {{else}}
+        <li class="nav__links__list__item">{{username}}</li>
+        <a href="/signout" style="color:white; list-style:none; text-decoration:none;">
+          <li class="nav__links__list__item"> Sign Out </li>
+        </a>
+        {{/if}}
       </ul>
     </div>
   </nav>
@@ -13,29 +26,34 @@
 
     <div class="middle--section__form">
       <div class="middle--section__form__header">
-        <span class="middle--section__form__header--first">Find rooms on marna house
+        <span class="middle--section__form__header--first">Find rooms on marna
         </span>
         <span class="middle--section__form__header--second">Discover entire homes and private rooms perfect for any
           trip.</span>
       </div>
       <div class="middle--section__form__main">
         <label class="middle--section__form__main--label">
-          From :
+          CHECK IN :
         </label>
-        <input type="date" class="middle--section__form__main--input middle--section__form__main--input--from" >
+        <input type="date" class="middle--section__form__main--input middle--section__form__main--input--from"
+          placeholder="From ... ">
         <label class="middle--section__form__main--label">
-          To :
+          CHECK OUT :
         </label>
-        <input type="date" class="middle--section__form__main--input middle--section__form__main--input--to">
+        <input type="date" class="middle--section__form__main--input middle--section__form__main--input--to"
+          placeholder="To ... ">
 
         <label class="middle--section__form__main--label">
           Type :
         </label>
-        <select name="" id="" class="middle--section__form__main--dropbox">
-          <option value="Single">Single</option>
-          <option value="Double">Double</option>
-          <option value="Triple">Triple</option>
-        </select>
+        <div class="middle--section__form__main--dropbox--test">
+          <div class="title">Room's Type </div>
+          <div class="dropbox-options-box opcity-zero">
+            <div class="single dropbox-option">Single</div>
+            <div class="double dropbox-option">Double</div>
+            <div class="triple dropbox-option">Triple</div>
+          </div>
+        </div>
         <span class='middle--section__form__main--alert'></span>
         <input type="submit" class="middle--section__form__main--submit" value="Search ">
       </div>
@@ -46,10 +64,11 @@
         Marna House
       </h1>
       <h2 class="middle--section__content--sub">
-        Where Everything are cool 
+        Where Everything are cool
       </h2>
       <p class="middle--section__content--para">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente accusamus itaque aliquid cumque officiis! Soluta sunt dicta vero, eaque, modi voluptatem ad praesentium eius nulla non assumenda nesciunt, totam ab.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente accusamus itaque aliquid cumque officiis!
+        Soluta sunt dicta vero, eaque, modi voluptatem ad praesentium eius nulla non assumenda nesciunt, totam ab.
       </p>
     </div>
 

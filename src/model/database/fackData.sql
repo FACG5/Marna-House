@@ -1,74 +1,41 @@
 
--- Users 
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('ahmed','ahmed','ahed@ah.com','0592548658','new');
-
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('rami','rami','rami@ah.com','02592548658','new');
-
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('hassan','hassan','hassan@ah.com','03592548658','new');
-
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('jamal','jamal','jamal@ah.com','05925448658','new');
-
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('mill','mill','mill@ah.com','05925486558','new');
-
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('will','will','will@ah.com','05925486586','new');
-
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('kanna','kanna','kanna@ah.com','05925486758','new');
-
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('ahme2d','ahme2d','s133@ah.com','05925486588','new');
-
 
 -- Rooms 
 INSERT INTO rooms
   (room_num,description,price,imgs,services,type) VALUES
-  (1,'hi',100,'ww.gom','servuces','single');
+  (1,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrs standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',100,'https://s-ec.bstatic.com/images/hotel/max1024x768/677/67735705.jpg','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','single');
 
 INSERT INTO rooms
   (room_num,description,price,imgs,services,type) VALUES
-  (2,'hi',100,'ww.gom','servuces','single');
+  (2,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',100,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKCa2ehoou1KxPvkxfGF6dou5HV-3_Is-l9ln2Pvi4qzNjtpvZ','Lorem Ipsum is simply dummy text of the printing and typesetting industry.  Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of  Ipsum','single');
 
 INSERT INTO rooms
   (room_num,description,price,imgs,services,type) VALUES
-  (3,'hi',100,'ww.gom','servuces','single');
+  (3,' Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',100,'http://www.richmondhill-hotel.co.uk/d/richmondhillredesign/media/Rooms/__thumbs_540_462_crop/Hill_Collection_Room.jpg?1447221111','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','single');
 
 INSERT INTO rooms
   (room_num,description,price,imgs,services,type) VALUES
-  (4,'hi',100,'ww.gom','servuces','single');
+  (4,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',100,'http://abroad.theaureview.com/wp-content/uploads/2016/08/tlakl-rooms-classicroom.jpg','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','single');
 
 INSERT INTO rooms
   (room_num,description,price,imgs,services,type) VALUES
-  (5,'hi',100,'ww.gom','servuces','single');
+  (5,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',100,'https://www.fullertonhotels.com/uploads/9/8/1/8/98182264/courtyard-room-01_4.jpeg','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','single');
 
 INSERT INTO rooms
   (room_num,description,price,imgs,services,type) VALUES
-  (6,'hi',100,'ww.gom','servuces','single');
+  (6,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',100,'https://roomshotels.com/wp-content/uploads/2016/11/Rooms-Hotels-Kazbegi-StandardDouble-DSC_5392-1024x683.jpg','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','single');
 
 INSERT INTO rooms
   (room_num,description,price,imgs,services,type) VALUES
-  (7,'hi',100,'ww.gom','servuces','single');
+  (7,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',100,'https://www.thegwenchicago.com/wp-content/uploads/2017/07/Guest-Rooms.jpg','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','single');
 
 INSERT INTO rooms
   (room_num,description,price,imgs,services,type) VALUES
-  (8,'hi',100,'ww.gom','servuces','single');
+  (8,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',100,'https://media.architecturaldigest.com/photos/5938873a583816035356735b/master/pass/tariq-dixon-living-room-bed-stuy-8.jpg','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','single');
 
 INSERT INTO rooms
   (room_num,description,price,imgs,services,type) VALUES
-  (9,'hi',100,'ww.gom','servuces','single');
+  (9,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',100,'https://images.oyoroomscdn.com/uploads/hotel_image/7665/xlarge/f9c1f8767810cf6c.jpg','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','single');
 
 
 -- reservations 
