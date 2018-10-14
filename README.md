@@ -3,7 +3,7 @@
 [Our prototype](https://www.figma.com/file/Be2UrCoirdZzoQ2bIB49qHh4/Untitled?node-id=0%3A1)
 
 ### Problem Statement
-The Marina House Hotel does not have a technological reservation system. The reservation depends on the telephone or e-mail, and then manually inserting the data into the databases, which takes a lot of time and effort. There is also no specific method followed by customers when booking to be able to view and choose the best services.
+Marna House Hotel does not have a technological reservation system. The reservation depends on the telephone or e-mail, and then manually inserting the data into the databases, which takes a lot of time and effort. There is also no specific method followed by customers when booking to be able to view and choose the best services.
 
 ______
 ### Our Solution
