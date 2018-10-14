@@ -12,8 +12,8 @@
   animation-duration: 0.3s;
   backface-visibility: hidden;
 }
-.details--model__content {
-
+.details--model__content,
+.total--model__total {
   min-height: 75vh;
   min-width: 38%;
   padding: 2rem;
@@ -28,11 +28,8 @@
   animation-timing-function: ease-in;
   animation-duration: 0.3s;
   backface-visibility: hidden;
- 
-
 }
 .details--model__close,
-.submit--model__close,
 .confirmation--model__close {
   font-size: 3rem;
   font-weight: 900;
@@ -43,7 +40,6 @@
 }
 
 .details--model__close:hover,
-.submit--model__close:hover,
 .confirmation--model__close:hover {
   color: rgb(255, 56, 49);
 }
@@ -77,9 +73,13 @@
   font-size: 2.4rem;
 }
 .details--model--btns {
-margin-top: 5rem;
-display: flex;
-justify-content: center;
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .details--model--btns input {
   padding: 1rem 4rem;
@@ -92,24 +92,24 @@ justify-content: center;
   border-radius: 3px;
 }
 .details--model--btns--blue,
-.submit--model--btns--blue{
+.total--model--btns--blue{
   background: rgb(0, 129, 216);
 }
 .details--model--btns--blue:hover,
-.submit--model--btns--blue:hover {
+.total--model--btns--blue:hover {
   background: rgb(26, 109, 165);
 }
 .details--model--btns--red,
-.submit--model--btns--red{
+.total--model--btns--red{
   background: rgb(253, 52, 52);
 }
 
 .details--model--btns--red:hover,
-.submit--model--btns--red:hover{
+.total--model--btns--red:hover{
   background: rgb(173, 21, 21);
 }
 
-.submit--model__content{
+.total--model__content{
   min-height: 75vh;
   min-width: 38%;
   padding: 2rem;
@@ -125,20 +125,20 @@ justify-content: center;
   animation-duration: 0.3s;
   backface-visibility: hidden;
 }
-.submit--model__content--header{
+.total--model__content--header{
   margin: 2rem auto;
   text-align: center;
   border-bottom: 1.2px solid rgb(83, 83, 83);
   padding-bottom: 2rem;
   width: 50%;
 }
-.submit--model__content--header--first { 
+.total--model__content--header--first { 
   font-size: 5rem;
   font-family: lato;
   color: rgb(70, 70, 70);
   font-weight: 100;
 }
-.submit--model__content--header--second { 
+.total--model__content--header--second { 
   font-size: 2rem;
   font-family: lato;
   color: rgb(70, 70, 70);
@@ -146,14 +146,14 @@ justify-content: center;
   margin-left: 8rem;
 }
 
-.submit--model__content--label--name {
+.total--model__content--label--name {
   display: block;
   font-size: 2rem;
   color: rgb(68, 68, 68);
   margin: 1rem 5rem;
 }
 
-.submit--model__content--input--name {
+.total--model__content--input--name {
   display: block;
   width: 35rem;
   border: .5px solid rgba(144, 144, 144,.5);
@@ -229,6 +229,58 @@ justify-content: center;
     
   }
 }
+.total--model__total--section{
+  position: relative;
+  width: 100%;
+  height: 55vh;
+}
+.total--model__select-rooms{
+  width: 80%;
+  max-height: 40vh;
+  margin: 0 auto;
+}
+.total--model--selected--rooms--header{
+  font-size: 3rem;
+  font-weight: 300;
+}
+.total--model--room-list {
+  list-style: none;
+  font-weight: 100;
+  max-height: 40vh;
+  font-size: 2rem;
+  margin-top: 2.5rem;
+}
+.total--model--room-list li {
+  margin-top: .5rem;
+}
+
+.total--model__selected-table{
+  width: 80%;
+  max-height: 10rem;
+  margin: 0 auto;
+  font-size: 2rem;
+  font-weight: 300;
+  border: 1px rgb(202, 202, 202) solid;
+  border-collapse: collapse;
+}
+.total--model__selected-table td{
+  text-align: center;
+}
+.total--model__selected-table td,
+.total--model__selected-table th {
+  padding: .5rem;
+}
+.total--model__selected-table tr:nth-child(even){
+  background: rgb(196, 196, 196);
+}
+
+.total--model__selected-table--header { 
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin: 1rem;
+}
+
 
 .hide{
   display: none;

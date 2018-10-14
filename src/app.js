@@ -2,6 +2,8 @@ const express = require('express');
 const hbs = require('express-handlebars');
 const path = require('path');
 const controller = require('./controllers');
+const cookieParser = require('cookie-parser');
+const {unlockCookie} = require('./middlewares/unlockCookie');
 
 const app = express();
 
@@ -11,6 +13,8 @@ app.disable('x-powered-by');
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(cookieParser());
+app.use(unlockCookie);
 app.use(controller);
 
 // HandleBars

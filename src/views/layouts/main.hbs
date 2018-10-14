@@ -16,10 +16,10 @@
     {{>footer}}
   </footer>
 
-  <section class='details--model'>
+  <section class='details--model' >
 
     {{!-- Details Form --}}
-    <div class="details--model__content">
+    <div class="details--model__content" >
       <span class="details--model__close">&times;</span>
       <div class="details--model__img">
         <img src="./room.jpeg" alt="Room Image">
@@ -53,30 +53,86 @@
     </div>
 
     {{!-- Inputs Form --}}
-    <div class="submit--model__content">
-      <a class="submit--model__close">&times; </a>
-      <div class="submit--model__content--header">
-        <h2 class="submit--model__content--header--first">Marna House</h2>
-        <h3 class="submit--model__content--header--second">Where Everything Is Cool</h3>
+    <div class="total--model__total" >
+      <span class="details--model__close">&times;</span>
+
+      <div class="total--model__content--header">
+        <h2 class="total--model__content--header--first">Marna House</h2>
+        <h3 class="total--model__content--header--second">Where Everything Is Cool</h3>
       </div>
-      <div class="submit--model__content--inputs">
-        <label class="submit--model__content--label--name"> First Name :
-          <input type="text" class="submit--model__content--input--name" id="first-name" placeholder="Type First Name ...">
-        </label>
-        <label class="submit--model__content--label--name"> Last Name :
-          <input type="text" class="submit--model__content--input--name" id="last-name" placeholder="Type Last Name ...">
-        </label>
-        <label class="submit--model__content--label--name"> Email Address :
-          <input type="text" class="submit--model__content--input--name" id="email" placeholder="Type Email Address ...">
-        </label>
-        <label class="submit--model__content--label--name"> Phone Number :
-          <input type="text" class="submit--model__content--input--name" id="phone" placeholder="Type Phone Number ...">
-        </label>
-      </div>
-      <span class='sumbit-error-alert' style="display:block; color:red;text-align:center; "></span>
-      <div class="details--model--btns">
-        <input type="submit" value='Comfirm' id="confirm-btn" class="submit--model--btns--blue">
-        <input type="submit" value='Cancel' class="submit--model--btns--red">
+      <div class="total--model__total--section" style="display:block">
+        <div class="total--model__select-rooms">
+        <h2 class="total--model__selected-table--header">Selected Rooms :</h2>
+
+          <table class="total--model__selected-table">
+            <tr>
+              <th>Room No .</th>
+              <th>Room Type </th>
+              <th>Room Price</th>
+            </tr>
+
+            <tr>
+              <td>Room 1</td>
+              <td>Single</td>
+              <td> 150 $ </td>
+            </tr>
+
+            <tr>
+              <td>Room 1</td>
+              <td>Single</td>
+              <td> 150 $ </td>
+            </tr>
+
+            <tr>
+              <td>Room 1</td>
+              <td>Single</td>
+              <td> 150 $ </td>
+            </tr>
+
+            <tr>
+              <td>Room 1</td>
+              <td>Single</td>
+              <td> 150 $ </td>
+            </tr>
+
+            <tr>
+              <td>Room 1</td>
+              <td>Single</td>
+              <td> 150 $ </td>
+            </tr>
+
+            <tr>
+              <td>Room 1</td>
+              <td>Single</td>
+              <td> 150 $ </td>
+            </tr>
+
+            <tr>
+              <td>Room 1</td>
+              <td>Single</td>
+              <td> 150 $ </td>
+            </tr>
+
+            <tr>
+              <td>Room 1</td>
+              <td>Single</td>
+              <td> 150 $ </td>
+            </tr>
+
+            <tr>
+              <td>Room 1</td>
+              <td>Single</td>
+              <td> 150 $ </td>
+            </tr>
+
+          </table>
+
+        </div>
+        <span class='total-error-alert' style="display:block; color:red;text-align:center; "></span>
+        <div class="details--model--btns">
+          <input type="submit" value='Comfirm' id="confirm-btn" class="total--model--btns--blue">
+          <input type="submit" value='Cancel' class="total--model--btns--red">
+        </div>
       </div>
     </div>
 
@@ -89,7 +145,8 @@
       </div>
       <div class="confirmation--model__content--message">
         <h4 class="confirmation--model__content--message-content">
-          Thanks You , Your order under confrimation when everything is good we will send message to you on your email
+          Thanks You , Your order under confrimation when everything is good we will send message to you on your
+          email
           address and on your smartphone
         </h4>
       </div>

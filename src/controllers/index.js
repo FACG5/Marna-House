@@ -9,7 +9,7 @@ router.get('/room-details/:id', home.roomDetails);
 router.post('/reservations', home.addReservations);
 router.get('/login', login.get);
 router.post('/login', login.checkUser);
-
+router.get('/signout', home.signout);
 
 router.get('/signup', signup.get);
 router.post('/signup', signup.addUser);

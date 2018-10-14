@@ -9,12 +9,14 @@ const footerSection = document.querySelector('.footer');
 const mainSection = document.querySelector('main');
 const mainModel = document.querySelector('.details--model');
 const detailsModel = document.querySelector('.details--model__content');
-const submitModel = document.querySelector('.submit--model__content');
+const submitModel = document.querySelector('.total--model__total');
 const confirmationModel = document.querySelector('.confirmation--model__content');
 const nextBtn = document.querySelector('.main--section--buttons--next');
 const clearBtn = document.querySelector('.main--section--buttons--cancel');
 const confirmAlert = document.querySelector('.sumbit-error-alert');
 const titleTag = document.querySelector('.main--section__header');
+const roomTable = document.querySelector('.total--model__selected-table');
+
 const selectedRooms = [];
 const selectedTime = {};
 
@@ -52,7 +54,7 @@ searchBtn.addEventListener('click', (event) => {
     getAvailableRooms('/available-rooms', data, 'post');
     selectedTime.from = data.from;
     selectedTime.to = data.to;
-    selectedTime.type = data.type
+    selectedTime.type = data.type;
     titleTag.textContent = `${data.type.toUpperCase()} :`;
   }
 });
@@ -66,8 +68,8 @@ function InsertRooms(room) {
   </div>
 
   <div class="main--section__result__item--img--back">
-  <input type="submit" value="Book it" room_id=${room.room_num} class="room_book_btn">
-  <input type="submit" value="Details" room_id=${room.room_num} class="room_details_btn">
+  <input type="submit" value="Book it" room_id=${room.room_num} room_price=${room.price} room_type=${room.type} class="room_book_btn">
+  <input type="submit" value="Details" room_id=${room.room_num} room_price=${room.price} room_type=${room.type} class="room_details_btn">
   </div>
 
   </div>
@@ -120,20 +122,33 @@ async function getAvailableRooms(url, data, method) {
 function bookingEvent(event) {
   const button = event.target;
   const roomNum = button.getAttribute('room_id');
-  const index = selectedRooms.indexOf(roomNum);
+  const roomPrice = button.getAttribute('room_price');
+  const roomType = button.getAttribute('room_type');
+
+  // Get the index of room ;
+
+  const index = getIndex(roomNum);
+
   styleingBtns(button);
   if (index >= 0) {
     selectedRooms.splice(index, 1);
   } else {
-    selectedRooms.push(roomNum);
+    selectedRooms.push({
+      roomNum,
+      roomPrice,
+      roomType,
+      selectedTime,
+    });
   }
   styleingBtns(button);
 }
 
+
 function styleingBtns(button) {
   const roomNum = button.getAttribute('room_id');
   const coverBtn = document.querySelector(`.room_book_btn[room_id="${roomNum}"]`);
-  if (selectedRooms.indexOf(roomNum) >= 0) {
+  const index = getIndex(roomNum);
+  if (index >= 0) {
     button.setAttribute('style', 'background:red;');
     button.value = 'Un Book';
     coverBtn.setAttribute('style', 'background:red;');
@@ -159,53 +174,56 @@ mainModel.addEventListener('click', (event) => {
   }
 });
 
-function collectUserInfo() {
-  const firstName = document.querySelector('#first-name').value;
-  const lastName = document.querySelector('#last-name').value;
-  const emailAddress = document.querySelector('#email').value;
-  const phoneNum = document.querySelector('#phone').value;
-
-  return {
-    firstName,
-    lastName,
-    emailAddress,
-    phoneNum,
-  };
-}
-const vaildationMakeReservation = (userInfo) => {
-  const regexName = /^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$/;
-  const regexPhone = /^\d+$/;
-  if (!regexName.test(userInfo.firstName)) {
-    return 'Please Check First Name ';
-  }
-  if (!(regexName.test(userInfo.lastName))) {
-    return 'Please Check Last Name';
-  }
-  if (!validateEmail(userInfo.emailAddress)) {
-    return 'Please Check Your Email Address';
-  } if (!regexPhone.test(userInfo.phoneNum)) {
-    return 'Please Check Your Phone Number';
-  }
-  return null;
-};
-
 nextBtn.addEventListener('click', () => {
-  hideAllModels();
-  submitModel.setAttribute('style', 'display:block;');
-  mainModel.setAttribute('style', 'display:block;');
-  const closeModelBtn = submitModel.querySelector('.submit--model__close');
-  const cancelModelBtn = submitModel.querySelector('.submit--model--btns--red');
-  const submitModelBtn = submitModel.querySelector('.submit--model--btns--blue');
-  cancelModelBtn.addEventListener('click', hideAllModels);
-  closeModelBtn.addEventListener('click', hideAllModels);
-  submitModelBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const userInfo = collectUserInfo();
-    const vaildationValue = vaildationMakeReservation(userInfo);
-    if (!vaildationValue) {
+  if ((getCookie('jwt')) === undefined) {
+    hideAllModels();
+    swal({
+      title: 'To Book Any Room You Should be logined !',
+      text: ' Go To Login Page ?',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          window.location = '/login';
+        } else {
+          return 5;
+        }
+      });
+  } else if (selectedRooms.length === 0) {
+    return swal({
+      title: 'You Should At Least Choose One Room',
+      text: 'You clicked the button!',
+      icon: 'warning',
+      button: 'Aww yiss!',
+    });
+  } else {
+    roomTable.textContent = '';
+    hideAllModels();
+    submitModel.setAttribute('style', 'display:block;');
+    mainModel.setAttribute('style', 'display:block;');
+    const closeModelBtn = submitModel.querySelector('.details--model__close');
+    const cancelModelBtn = submitModel.querySelector('.total--model--btns--red');
+    const submitModelBtn = submitModel.querySelector('.total--model--btns--blue');
+    cancelModelBtn.addEventListener('click', hideAllModels);
+    closeModelBtn.addEventListener('click', hideAllModels);
+
+    // Header of Table ;
+    addRow({ roomNum: 'Room NO.', roomType: 'Room Type', roomPrice: 'Room Price In ' });
+    let totalCount = 0;
+    for (let i = 0; i < selectedRooms.length; i += 1) {
+      addRow(selectedRooms[i]);
+      totalCount += Number(selectedRooms[i].roomPrice);
+    }
+
+
+    addRow({ roomNum: '', roomType: '', roomPrice: totalCount });
+
+    submitModelBtn.addEventListener('click', (e) => {
+      e.preventDefault();
       const reservationInfo = {
         rooms: selectedRooms,
-        userInfo,
         from: selectedTime.from,
         to: selectedTime.to,
         type: selectedTime.type,
@@ -215,72 +233,48 @@ nextBtn.addEventListener('click', () => {
         body: JSON.stringify(reservationInfo),
         headers: { 'Content-Type': 'application/json' },
       })
-        .then(res => res.json())
+        .then((res) => {
+          hideAllModels();
+          return res.json();
+        })
         .then((res) => {
           if (res.redirect) {
-            window.location.reload();
+            window.location = res.redirect;
           } else if (res.error) {
             confirmAlert.textContent = res.error;
           } else {
+            const unBookedRooms = [];
+            const bookedRooms = [];
             res.forEach((elem) => {
               if (elem.err) {
-                // show error modal
-              } else {
-                // show success
+                unBookedRoos.push(elem.room_id);
               }
             });
-            // show email conirmation modal or error modal
+            if (unBookedRooms.length > 0) {
+              swal({
+                title: 'Sorry These Rooms has been booked .',
+                text: (`${unbookedRooms}`),
+                icon: 'warning',
+                button: 'Aww yiss!',
+              });
+            } else {
+              swal({
+                title: 'Good job!',
+                text: 'You clicked the button!',
+                icon: 'success',
+                button: 'Aww yiss!',
+              });
+              selectedRooms.splice(0, selectedRooms.length - 1);
+            }
           }
         })
-        .catch(err => console.log(err));
-    } else {
-      confirmAlert.textContent = vaildationValue;
-      setTimeout(() => {
-        confirmAlert.textContent = '';
-      }, 1000);
-    }
-  });
+        .catch((err) => {
+          window.location = '/';
+        });
+    });
+  }
 });
 
-// To Vaild Email ;
-function validateEmail(email) {
-  const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return regex.test(String(email).toLowerCase());
-}
-dropBtn.addEventListener('click', () => {
-  dropBox.classList.toggle('opcity-zero');
-});
-
-dropBox.addEventListener('click', (event) => {
-  dropBtn.textContent = event.target.textContent;
-  dropBox.classList.add('opcity-zero');
-});
-const collectDatatoReservarion = () => {
-  const firstname = document.querySelector('.first-name-input').value;
-  const lastname = document.querySelector('.last-name-input').value;
-  const email = document.querySelector('.email-address-input').value;
-  const phone = document.querySelector('.phone-number-input').value;
-  return {
-    firstname,
-    lastname,
-    email,
-    phone,
-    from: reservationInterval.from,
-    to: reservationInterval.to,
-    selectedRooms,
-  };
-};
-const makeReservation = () => {
-  const data = JSON.stringify(collectDatatoReservarion());
-  fetch('/addreservation', {
-    method: 'post',
-    body: data,
-    headers: { 'Content-type': 'application/json' },
-  })
-    .then(res => (res.json()))
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
-};
 
 clearBtn.addEventListener('click', () => {
   selectedRooms.splice(0, selectedRooms.length);
@@ -297,6 +291,7 @@ function detailsModelShow(room) {
   const closeBtn = detailsModel.querySelector('.details--model__close');
   const cancelBtn = detailsModel.querySelector('.details--model--btns--red');
   const bookBtn = detailsModel.querySelector('.details--model--btns--blue');
+
   details.textContent = room.description;
   services.textContent = room.services;
   img.setAttribute('src', room.imgs);
@@ -306,6 +301,48 @@ function detailsModelShow(room) {
   mainModel.setAttribute('style', 'display:block;');
   detailsModel.setAttribute('style', 'display:block;');
   bookBtn.setAttribute('room_id', room.room_num);
+  bookBtn.setAttribute('room_price', room.price);
+  bookBtn.setAttribute('room_type', room.type);
   styleingBtns(bookBtn);
   bookBtn.addEventListener('click', bookingEvent);
+}
+
+// the drop box settings ;
+dropBtn.addEventListener('click', () => {
+  dropBox.classList.toggle('opcity-zero');
+});
+dropBox.addEventListener('click', (event) => {
+  dropBtn.textContent = event.target.textContent;
+  dropBox.classList.add('opcity-zero');
+});
+
+const getIndex = (roomNum) => {
+  for (let i = 0; i < selectedRooms.length; i += 1) {
+    if (selectedRooms[i].roomNum === roomNum) { return i; }
+  }
+};
+
+const addRow = (room) => {
+  const tableRow = document.createElement('tr');
+  const roomNum = document.createElement('td');
+  const roomType = document.createElement('td');
+  const roomPrice = document.createElement('td');
+
+  // Content ;
+  roomNum.textContent = room.roomNum;
+  roomType.textContent = room.roomType;
+  roomPrice.textContent = `${room.roomPrice}$`;
+
+  // Nesting  ;
+  tableRow.appendChild(roomNum);
+  tableRow.appendChild(roomType);
+  tableRow.appendChild(roomPrice);
+  roomTable.appendChild(tableRow);
+};
+
+// get specific cookie ;
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
 }

@@ -11,9 +11,9 @@ exports.checkUser = (req, res, next) => {
           .then(() => {
             makeCookie({
               email: result.email,
+              username: result.username,
             })
               .then((cookieValue) => {
-                console.log(cookieValue);
                 res.cookie('jwt', cookieValue);
                 res.send({ redirect: '/' });
               })
@@ -22,9 +22,11 @@ exports.checkUser = (req, res, next) => {
           .catch(() => res.send({ error: 'Check Email Or Password' }));
       } else res.send({ error: 'Check Email Or Password ' });
     })
-    .catch(() => res.send({ redirect: '/login' }));
+    .catch((err) => {
+      console.log(err);
+      res.send({ redirect: '/login' });
+    });
 };
-
 
 exports.get = (req, res) => {
   res.render('login', {

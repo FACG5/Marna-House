@@ -1,7 +1,7 @@
 const fakeData = require('./../model/fakeData');
 const { avaliableRooms, getRoom } = require('./../model/queries/rooms');
 const { addReservation } = require('./../model/queries/reservations');
-const { addUser } = require('./../model/queries/users');
+const { addUser, getUser } = require('./../model/queries/users');
 
 exports.get = (req, res) => {
   res.render('home', {
@@ -17,9 +17,15 @@ exports.get = (req, res) => {
     sectionType: 'single :',
     rooms: fakeData,
     script: ['home'],
+    loginstatus: (req.unlockCookie === null) ? true : false , 
+    username: (req.unlockCookie === null) ? '' : req.unlockCookie.username,
   });
 };
 
+exports.signout = (req, res) => {
+  res.cookie('jwt', 'nothing', { maxAge: 0 });
+  res.redirect('/');
+}
 exports.availableRooms = (req, res) => {
   avaliableRooms(req.body)
     .then((result) => {
@@ -35,61 +41,42 @@ exports.roomDetails = (req, res) => {
 };
 
 exports.addReservations = (req, res) => {
-  const {
-    firstName: first_name,
-    lastName: last_name,
-    phoneNum: phone_num,
-    emailAddress: email_address,
-  } = req.body.userInfo;
-  addUser({
-    first_name, last_name, phone_num, email_address,
-  })
+  if (!req.unlockCookie) {
+    return res.send({ redirect: '/login' });
+  }
+  getUser(req.unlockCookie.email)
     .then((result) => {
-      const { id: user_id } = result.rows[0];
-      const { rooms, from: reservation_from, to: reservation_to } = req.body;
+      const { id: user_id } = result;
+      const { rooms } = req.body;
       let counter = 0;
       const resArray = [];
-      rooms.forEach((room_id) => {
-        avaliableRooms(req.body)
+      rooms.forEach((room) => {
+        avaliableRooms(room.selectedTime)
           .then((result) => {
-            const roomIds = result.map( item => item.id)
-            if (roomIds.includes(Number(room_id))) {
+            const roomIds = result.map(item => item.id);
+            if (roomIds.includes(Number(room.roomNum))) {
               addReservation({
-                user_id, reservation_from, reservation_to, room_id,
+                user_id,
+                reservation_from: room.selectedTime.from,
+                reservation_to: room.selectedTime.to,
+                room_id: room.roomNum,
               })
                 .then((reservationRes) => {
-                  resArray.push({ room_id, msg: 'room bocked sucssesfully' });
-                  counter += 1;
-                  if (counter === rooms.length) {
-                    res.send(resArray);
-                  }
-                })
-                .catch((err) => {
-                  resArray.push({ room_id, error: 'this roome not available choose another one m !' });
+                  resArray.push({ room_id: room.roomNum, msg: 'Room Bocked Sucssesfully' });
                   counter += 1;
                   if (counter === rooms.length) {
                     res.send(resArray);
                   }
                 });
             } else {
-              resArray.push({ room_id, error: 'this roome not available choose another one !' });
+              resArray.push({ room_id: room.roomNum, error: 'This Room Is Not Available Choose Another One !' });
               counter += 1;
               if (counter === rooms.length) {
                 res.send(resArray);
               }
             }
           })
-          .catch(err => console.log(err, ({ Error: 'there is error' })));
+          .catch(() => res.send({ error: 'There Is Error' }));
       });
-    }).catch((err) => {
-      if (err.code === 23505) {
-        if (err.detail.includes('email_address')) {
-          res.send({ error: 'Already Taken Email Address .' });
-        } else if (err.detail.includes('phone_num')) {
-          res.send({ error: 'Already Taken Phone Number .' });
-        }
-      } else {
-        res.send({ redirect: '/' });
-      }
     });
 };

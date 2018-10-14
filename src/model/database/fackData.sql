@@ -1,37 +1,4 @@
 
--- Users 
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('ahmed','ahmed','ahed@ah.com','0592548658','new');
-
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('rami','rami','rami@ah.com','02592548658','new');
-
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('hassan','hassan','hassan@ah.com','03592548658','new');
-
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('jamal','jamal','jamal@ah.com','05925448658','new');
-
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('mill','mill','mill@ah.com','05925486558','new');
-
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('will','will','will@ah.com','05925486586','new');
-
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('kanna','kanna','kanna@ah.com','05925486758','new');
-
-INSERT INTO users
-  (first_name , last_name , email_address , phone_num ,status) VALUES
-  ('ahme2d','ahme2d','s133@ah.com','05925486588','new');
-
 
 -- Rooms 
 INSERT INTO rooms

@@ -28,6 +28,8 @@
   font-size: 1.5rem;
   transition: all .4s;
   font-weight: 900;
+  display: inline-block;
+  margin-left: 1rem;
 }
 .nav__links__list__item:hover {
   color:orange;

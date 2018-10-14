@@ -5,7 +5,20 @@
     </div>
     <div class="nav__links">
       <ul class="nav__links__list">
-        <li class="nav__links__list__item">Admin</li>
+
+        {{#if loginstatus}}
+        <a href="/login" style="color:white; list-style:none; text-decoration:none;">
+          <li class="nav__links__list__item" href="/login"> Login </li>
+        </a>
+        <a href="/signup" style="color:white; list-style:none; text-decoration:none;">
+          <li class="nav__links__list__item"> Sign Up </li>
+        </a>
+        {{else}}
+        <li class="nav__links__list__item">{{username}}</li>
+        <a href="/signout" style="color:white; list-style:none; text-decoration:none;">
+          <li class="nav__links__list__item"> Sign Out </li>
+        </a>
+        {{/if}}
       </ul>
     </div>
   </nav>
